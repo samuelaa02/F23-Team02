@@ -203,6 +203,7 @@ input:focus {
     display: inline-block;
     margin-left: 20px;
     position: absolute;
+    max-width: 350px;
 }
 
 #buy {
