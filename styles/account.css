@@ -286,3 +286,14 @@ input:focus {
     opacity: 1;
     pointer-events: all;
 }
+
+#removeFromCart {
+    border-width: 2px;
+    border-radius: 5px;
+    background-color: rgb(255, 35, 35);
+    color: white;
+}
+
+#removeFromCart:hover {
+    background-color: rgb(255, 130, 130);
+}
