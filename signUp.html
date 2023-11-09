@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src = "./js/account.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +16,7 @@
 
         <div id="inputField">
             <p>First Name:</p>
-            <input name="fName" id="fName">
+            <input name="fName" id="fName" >
             <br>
             <p>Last Name:</p>
             <input name="lName" id="lName">
@@ -24,10 +25,10 @@
             <input name="username" id="username">
             <br>
             <p>Email:</p>
-            <input name="email" id="email">
+            <input type="email" name="email" id="email" placeholder="example@email.com">
             <br>
             <p>Phone:</p>
-            <input name="phone" id="phone">
+            <input type ="tel" name="phone" id="phone" placeholder="555-555-5555">
             <br>
             <p>Create Password:</p>
             <input name="password" type="password" id="password">
@@ -35,41 +36,17 @@
             <p>Confirm Password:</p>
             <input name="cPassword" type="password" id="cPassword">
             <br>
+            <br>
+            <div id="warning" style="visibility: hidden;"></p>
         </div>
 
-        <br><br>
-
+        <br>
         <div id="buttons">
-            <button id="signUp" name="submit">Sign Up</button>
+            <button id="signUp" name="submit" onclick=Register()>Sign Up</button>
+            <hr>
+            <h3 id="haveAccount">Already have an account? <a href="signIn.html">Sign In Here</a></h3>
         </div>
 
-        <div id="warnings"></div>
-
-        <br><hr>
-
-        <h3 id="haveAccount">Already have an account? <a href="signIn.html">Sign In Here</a></h3>
-        
-        <script src="Lambda Functions/Register.js"></script>
-        <script>
-            function passwordCheck() {
-                passwordOriginal = document.getElementById("password").value;
-                passwordDupe = document.getElementById("cPassword").value;
-
-                document.getElementById("warnings").innerHTML = "";
-
-                if (passwordOriginal !== passwordDupe) {
-                    document.getElementById("warnings").innerHTML += "<p id='passwordError'>Passwords do not match.</p><br>";
-                }
-
-                if (passwordOriginal.length < 8) {
-                    document.getElementById("warnings").innerHTML += "<p id='passwordError'>The password is less than 8 characters long.</p>";
-                }
-
-                else {
-                    //lambda function
-                }
-            }
-        </script>
         
     </div>
     

@@ -5,7 +5,7 @@ body {
 
 .container {
   height: fit-content;
-  width: 25vw;
+  width: 500px;
 
   margin-left: auto;
   margin-right: auto;
@@ -22,6 +22,7 @@ body {
 .container a {
   text-align: left;
 }
+
 
 #windowTitle {
   padding-top: 10px;
@@ -53,19 +54,18 @@ body {
 }
 
 #buttons {
-  text-align: left;
+  text-align: center;
+  width: 80%;
 }
 
 #buttons button {
   height: 40px;
-  width: 73%;
-  margin-left: 50px;
-
+  width: 50%;
   border-style: solid;
   border-radius: 5px;
   border-color: #63bdfa;
-
   background-color: #63bdfa;
+
   color: #fff;
   font-size: 12pt;
 }
@@ -76,7 +76,7 @@ body {
 }
 
 hr {
-  width: 90%;
+  width: 100%;
 }
 
 h3 {
@@ -90,13 +90,13 @@ h3:visted {
 
 #haveAccount {
   padding-bottom: 20px;
+  width: 80%;
 }
 
-#passwordError {
-  margin-left: 50px;
-  margin-right: auto;
-  margin-bottom: -20px;
-  width: 73%;
+#warning {
+  width: 80%;
+  height: fit-content;
+  padding: auto;
 
   color: red;
   background-color:rgb(255, 232, 228); 
@@ -105,5 +105,6 @@ h3:visted {
   border-radius: 5px;
   border-color: red;
 
-  text-align: center;
+  text-align: left;
+  line-height: auto;
 }
