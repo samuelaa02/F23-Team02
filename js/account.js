@@ -11,6 +11,7 @@ function signIn(){
     .then(data=>{
         console.log(data);
         if((data.status === "Success")){
+            document.cookie = "accountID="+data.accountId+";path=/";
             switch (data.userType){
                 case 'Admin':
                     window.location.href ='./admin/admin_dashboard.html';
@@ -116,37 +117,26 @@ function Register(){
     }
 }
 
-function validateToken(){
-    //get username and token cookie
-    username = document.cookie.match();
-    token = document.cookie.match();
+function logout(){
+    //clear cookies
+    document.cookie = "accountID=;path=/";
+    window.location.replace('../signIn.html');
 
-    fetch('function url goes here',{
-        Method: 'POST',
-        Headers:{
-            'Content-type': 'application/json; charset=UTF-8',
-        },
-        Body: JSON.stringify({
-            'type': 'ValidateToken',
-            'username': username,
-            'token' :token
-        }),
-    }).then(res =>{
-        return res.json;
-    }).then(data=>{
-        //debugging purpose
-        console.log(data);
+    //redirect
+}
 
-        if((data.status === "Success") && (data.eventType === "ValidateToken")){
-            //call page specific function to get data
-        }
-        else if((data.status === "Failure") && (data.eventType === "ValidateToken")){
-            //redirect to signin page
-            window.location.replace('../signIn.html');
-        }
-        else{
-            console.log(data.eventType);
-        }
-
-    })
+async function validateToken(pageType){
+    //get accountId token
+    const accountToken = document.cookie.split("; ").find((row) => row.startsWith("accountID="))?.split("=")[1];
+    console.log(accountToken);
+    if(accountToken===''){
+        window.location.href ='../signIn.html';
+    }
+    else{
+        var apiURL = 'https://u76zsrtgq8.execute-api.us-east-1.amazonaws.com/team02-testing/load-page?page=' + pageType + '&token=' + accountToken;
+        const res = await fetch(apiURL);
+        const data = await res.json();
+        return data;
+    }
+    
 }
