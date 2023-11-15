@@ -72,6 +72,8 @@ section{
     display: flex;
     flex-direction: column;
     background-color: #fefefe;
+    overflow-y: scroll;
+    max-height: 100vh;
 }
 section article{
     display: flex;
@@ -85,7 +87,7 @@ section article{
 }
 
 section article h2{
-    justify-content: ;
+    justify-content: center;
 }
 
 

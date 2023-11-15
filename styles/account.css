@@ -1,17 +1,3 @@
-/* Reset some default styles */
-body, h1, h2, p, ul, li {
-    margin: 0;
-    padding: 0;
-    line-height: 150%;
-}
-
-/* Page styling */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    display: flex; /* Use flex to create a column layout */
-}
-
 .vertical-nav {
     background-color: #333;
     color: white;
@@ -40,43 +26,6 @@ body {
 
 .vertical-nav a:hover {
     background-color: #1F78B4; /* Hover background color */
-}
-
-header {
-    background-color: #1F78B4;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-    flex: 1; /* Expand to fill available space */
-}
-
-main {
-    flex: 3; /* Expand to fill available space */
-    padding: 20px;
-}
-
-section {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-button {    
-    padding: 10px;
-    border: 0;
-    border-radius: 5px;
-    background-color: #fff;
-    width: 75px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-footer {
-    background-color: #1F78B4;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    flex: 1; /* Expand to fill available space */
 }
 
 #search_artist {
@@ -202,7 +151,6 @@ input:focus {
 #song_info {
     display: inline-block;
     margin-left: 20px;
-    position: absolute;
     max-width: 350px;
 }
 
@@ -223,8 +171,6 @@ input:focus {
 #cartBtn:hover, #closeBtn:hover, #buy:hover {
     background-color:rgb(163, 163, 163);
 }
-
-
 
 .modal {
     position: fixed;
