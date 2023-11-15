@@ -1,0 +1,108 @@
+#loading {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.spinner {
+    border: 8px solid rgba(0, 0, 0, 0.1);
+    border-top: 8px solid white; /* Change color if needed */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+body{
+    background-color: #3498db;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#content{
+    display: flex;
+    flex-direction: row;
+    background-color: #3498db;
+    height: max-content;
+    min-height: 100vh;
+}
+
+nav{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+nav button{
+    flex: 1;
+    border: none;
+    background-color: #3e3e3e;
+    color: #ffffff;
+    display: flex;
+    flex: row;
+    justify-content: center;
+        
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: x-large;
+    font-weight: bold;
+    min-height: fit-content
+    
+}
+
+nav button img{
+    
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+}
+
+button:hover #logout{
+    background-color: #bd0000;
+    box-shadow: #fefefe 0px 10px;
+}
+
+
+nav button:hover{
+    background-color: #505050;
+    box-shadow: #fefefe 0px 10px;
+}
+
+section{
+    flex:4;
+    display: flex;
+    flex-direction: column;
+    background-color: #fefefe;
+}
+section article{
+    display: flex;
+    justify-content: left;
+
+    margin: 10px;
+    padding: 10px;
+    border: 2px #3498db solid;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px 5px #3e3e3e40;
+}
+
+section article h2{
+    justify-content: ;
+}
+
+
+aside{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    background-color: #3e3e3e;
+}
+

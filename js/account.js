@@ -128,7 +128,6 @@ function logout(){
 async function validateToken(pageType){
     //get accountId token
     const accountToken = document.cookie.split("; ").find((row) => row.startsWith("accountID="))?.split("=")[1];
-    console.log(accountToken);
     if(accountToken===''){
         window.location.href ='../signIn.html';
     }
@@ -136,6 +135,7 @@ async function validateToken(pageType){
         var apiURL = 'https://u76zsrtgq8.execute-api.us-east-1.amazonaws.com/team02-testing/load-page?page=' + pageType + '&token=' + accountToken;
         const res = await fetch(apiURL);
         const data = await res.json();
+        console.log(data);
         return data;
     }
     

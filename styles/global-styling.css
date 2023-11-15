@@ -4,9 +4,14 @@ body{
     margin: 0px;
     padding: 0px;
 }
+.center{
+    flex: 4;
+    background-color: #fefefe;
+    overflow-y:auto;
+}
 
 #loading {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -14,7 +19,7 @@ body{
 
 .spinner {
     border: 8px solid rgba(0, 0, 0, 0.1);
-    border-top: 8px solid #3498db; /* Change color if needed */
+    border-top: 8px solid white; /* Change color if needed */
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -27,7 +32,7 @@ body{
 }
 
 #content {
-    display: none;
+    display: flex;
     flex-direction: row;
     flex-wrap:nowrap;
     justify-content: center;
@@ -90,8 +95,6 @@ body{
     background-color: #505050;
     box-shadow: #fefefe 0px 10px;
 }
-
-
 
 .side-bar{
     flex: 1;
