@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sponsor Dashboard</title>
+    <title>Sponsor Driver Management</title>
     <link rel="stylesheet" href="../styles/global-styling.css"> 
     <link rel="stylesheet" href="../styles/sponsor-dash.css"> 
 </head>
@@ -36,14 +36,32 @@
             <div class="vertical">
                 <div class="card">
                     <div class="card-title">
-                        <h2>Sponsor Organization</h2>
+                        <h2>Manage Users</h2>
                         <h2 id="sponsor-name"></h2>
                     </div>
                     <div class="card-subtitle">
-                        <h2 id="driver-count">Encouraging ## members to drive safely!</h2>
+                        <select>
+                            <option value = "" disable selected> Select Member Type</option>
+                            <option value = "Driver">Driver</option>
+                            <option value = "Sponsor">Sponsor</option>
+                        </select>
+                        <select>
+                            <option value = "" disable selected> Search by</option>
+                            <option value = "username">Username</option>
+                            <option value = "email">Email</option>
+                        </select>
+                        
+                        <input type="search">
+                        <button>Search</button>
                     </div>
                     <div class="card-body">
-                        <h3 id="spon-desc">Sponsor description here...</h3>
+                        <div id="user-info"></div>
+
+                        <div id="edit-user"></div>
+                    </div>
+                    <div class="card-footer">
+                        <button >Edit info</button>
+                        <button> Remove User</button>
                     </div>
                 </div>
             </div>
@@ -73,6 +91,5 @@
 
 </body>
 <script>
-    loadDashboard();
 </script>
 </html>
