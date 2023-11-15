@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="../js/account.js"></script>
+<script src="../js/sponsorPages.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sponsor Driver Management</title>
+    <link rel="stylesheet" href="../styles/global-styling.css"> 
+    <link rel="stylesheet" href="../styles/sponsor-dash.css"> 
+</head>
+
+<body>
+    <div id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <div id="content">
+        <div class="nav-bar">
+            <div class="vertical">
+                <button id="account" onclick="window.location.href='./sponsor_settings.html'">
+                    <div id="user">
+                        <img id="pfp" src="../imgs/account-icon.png">
+                        <h1 id="user-name">Name goes here</h1>
+                    </div>
+                </button>
+                <button onclick="window.location.href='./sponsor_dashboard.html'"><h1>Dashboard</h1></button>
+                <button onclick="window.location.href='./sponsor_catalog.html'"><h1>Organization</h1></button>
+                <button onclick="window.location.href='./sponsor_catalog.html'"><h1>Catalog</h1></button>
+                <button onclick="window.location.href='./sponsor_management.html'"><h1>Manage Members</h1></button>
+                <button id="logout" onclick="logout()"><h1>Logout</h1></button>
+                <button id="aboutUs" onclick="window.location.href='../aboutPage.html'"><h1>About Us</h1></button>
+            </div>
+        </div>
+        <div class="center">
+            <div class="vertical">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>Manage Users</h2>
+                        <h2 id="sponsor-name"></h2>
+                    </div>
+                    <div class="card-subtitle">
+                        <select>
+                            <option value = "" disable selected> Select Member Type</option>
+                            <option value = "Driver">Driver</option>
+                            <option value = "Sponsor">Sponsor</option>
+                        </select>
+                        <select>
+                            <option value = "" disable selected> Search by</option>
+                            <option value = "username">Username</option>
+                            <option value = "email">Email</option>
+                        </select>
+                        
+                        <input type="search">
+                        <button>Search</button>
+                    </div>
+                    <div class="card-body">
+                        <div id="user-info"></div>
+
+                        <div id="edit-user"></div>
+                    </div>
+                    <div class="card-footer">
+                        <button >Edit info</button>
+                        <button> Remove User</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="side-bar">
+            <div class="vertical">
+                <div class="quick-logs">
+                    <div class="quick-log-title">
+                        <h1>Recent Activity</h1>
+                    </div>
+                    <div id="quick-log-entries">
+                        <div class="ql-entry">
+                            <p>DTS</p>
+                            <p>Action</p>
+                        </div>
+                    </div>
+                    <div class="ql-entry">
+                        <p>DTS</p>
+                        <p>Action</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+</script>
+</html>

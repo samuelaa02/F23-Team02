@@ -1,43 +1,38 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const nodemailer = require('nodemailer');
+function sendEmail()
+{
+    var email = document.getElementById('email').value;
+    document.getElementById("errMessage").innerHTML = "";
+    var apiURL = 'https://u76zsrtgq8.execute-api.us-east-1.amazonaws.com/team02-testing/email' + '?email' + email;
 
-const app = express();
-app.use(bodyParser.json());
+    fetch(apiURL)
+    .then(res =>
+        {
+            return res.json();
+        })
 
-// Configure the SMTP transporter
-const transporter = nodemailer.createTransport({
-    host: 'email-smtp.us-east-1.amazonaws.com', // Replace with the SES SMTP endpoint for your region
-    port: 587,
-    secure: false, // Use TLS
-    auth: {
-        user: 'AKIAT77CFA37ZISZSW5V', // Replace with your SMTP username
-        pass: 'BPPPxJ2K4oRFTdB5WtXtDxitnPuXFgEG+2yh/+HvWc8t', // Replace with your SMTP password
-    },
-});
+    .then(data => 
+        {
+            console.log(data);
+            if((data.status === "Success") && (data.eventType === "EmailSent"))
+            {
+                switch (data.userType)
+                {
+                    case 'SentEmail':
+                        window.location.href = '/email_sent.html';
+                        break;
+                }
+            }
 
-// Endpoint for sending a password reset email
-app.post('/send-reset-email', async (req, res) => {
-    const { recipientEmail, resetLink } = req.body;
+            else if((data.status === "Failure") && (data.eventType === "EmailSent"))
+            {
+                document.getElementById("errMessage").innerHTML = data.reason;
+            }
 
-    const mailOptions = {
-        from: 'jltran@g.clemson.edu', // Replace with your verified sender email address
-        to: recipientEmail,
-        subject: 'Password Reset Link',
-        text: `Click the following link to reset your password: ${resetLink}`,
-    };
+            else
+            {
+                document.getElementById("errMessage").innerHTML = "Something went wrong."
+            }
+        })
 
-    try {
-        await transporter.sendMail(mailOptions);
-        console.log('Password reset email sent successfully');
-        res.status(200).json({ message: 'Email sent successfully' });
-    } catch (error) {
-        console.error('Error sending email:', error);
-        res.status(500).json({ error: 'Failed to send email' });
-    }
-});
-
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+        .catch(error=>console.log(error));
+}

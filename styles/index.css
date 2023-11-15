@@ -86,3 +86,10 @@ h3 {
 h3:visted {
   color:rgb(59, 59, 59)
 }
+
+#warning {
+  text-align: left;
+  margin-left: 50px;
+  margin-right: auto;
+  color:red;
+}

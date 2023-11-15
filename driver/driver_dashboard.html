@@ -1,121 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src="../js/account.js"></script>
+<script src="../js/driverPages.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Driver Dashboard Demo</title>
-    <link rel="stylesheet" href="../styles/styles.css">
-    <link rel="stylesheet" href="../styles/dashboard.css"> 
+    <title>Driver Dashboard</title>
+    <link rel="stylesheet" href="../styles/global-styling.css"> 
+    <link rel="stylesheet" href="../styles/driver-dash.css"> 
 </head>
+
 <body>
-    <header>
-        <h1>Driver Dashboard</h1>
+    <div id="loading">
+        <div class="spinner"></div>
+    </div>
 
-    <main>
-        <div id="banner">
-            <a href="index.html">
-                <img id="home" src="imgs/home-icon.png">
-            </a>
+    <div id="content">
+        <div class="nav-bar">
+            <div class="vertical">
+                <button id="account" onclick="window.location.href='./driver_settings.html'">
+                    <div id="user">
+                        <img id="pfp" src="../imgs/account-icon.png">
+                        <h1 id="user-name">Name goes here</h1>
+                    </div>
+                </button>
+                <button onclick="window.location.href='./driver_dashboard.html'"><h1>Dashboard</h1></button>
+                <button onclick="window.location.href='./driver_catalog.html'"><h1>Catalog</h1></button>
+                <button onclick="window.location.href='./driver_catalog.html'"><h1>Sponsors</h1></button>
+                <button id="logout" onclick="logout()"><h1>Logout</h1></button>
+                <button id="aboutUs" onclick="window.location.href='../aboutPage.html'"><h1>About Us</h1></button>
+            </div>
+        </div>
+        <div class="center">
+            <div class="vertical">
+                <div class="card">
+                    <div class="card-title">
+                        <h2>Sponsor Organization</h2>
+                        <h2 id="sponsor-name"></h2>
+                    </div>
+                    <div class="card-content"></div>
+                </div>
+                <div class="card">
+                    <div class="card-title">
+                        <h2>Wishlist</h2>
+                    </div>
+                    <div class="card-content"></div>
+                </div>
+            </div>
 
-            <div class="dropdown">
-                <img id="home" class="dropbtn" src="imgs/settings-icon.png">
-                <div class="dropdown-content">
-                    <a href="driver_account.html">Profile</a>
-                    <a href="driver_settings.html">Settings</a>
-                    <a href="logout.html">Logout</a>
+        </div>
+        <div class="side-bar">
+            <div class="vertical">
+                <div id="point-total">
+                    <h2>Current Points</h2>
+                    <h2 id="curr-points"></h2>
+                </div>
+                <div id="point-activity">
+                    <div class="point-trans"></div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <section class="dashboard">
-            <h2>Welcome, [Driver Name]</h2>
-            <div class="points">
-                <p>Total Points: [Total Points]</p> 
-            </div>
-            <div class="actions">
-                <button href="driver_account.html">My Account</button>
-                <button href="driver_catalog.html">Driver's Catalog</button>
-                <!-- <button href="logout.html">Logout</button> -->
-                <button href=:driver_points.html">Point Tracking</button>
-            </div>
-            <div class="Driver">
-                <p>Current Driver: [Driver Name]</p>
-            </div>
-        </section>
-        <section class="purchase-status">
-            <h2>Purchase Status</h2>
-            <ul id="purchaseList">
-                
-            </ul>
-        </section>
-        <section class="points-status">
-            <h2>Points Status</h2>
-            <ul id="pointsList">
-
-            </ul>
-        </section>
-    </main>
-    <footer>
-        <p><a href="../aboutPage.html">About</a></p>
-        <div class="profile-dropdown">
-            <!-- <button id="profileDropdownBtn">Profile</button> -->
-            <div class="dropdown-content">
-                <a href="driver_settings.html">Settings</a>
-                <a href="driver_account.html">My Account</a>
-            </div>
-        </div>
-    </footer>
-    <script>
-        // Function to get a specific cookie by name
-        function getCookie(name) {
-            const cookies = document.cookie.split('; ');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].split('=');
-                if (cookie[0] === name) {
-                    return decodeURIComponent(cookie[1]);
-                }
-            }
-            return null;
-        }
-
-        // Function to fetch the user's information from the Lambda function
-        async function fetchDriverInfo() {
-            try {
-                const response = await fetch('https://ansjrgip2emz3z7fqq6qbrqpua0lsckt.lambda-url.us-east-1.amazonaws.com/');
-                if (response.ok) {
-                    const data = await response.json();
-                    const firstName = data.firstName || 'N/A';
-                    const userName = data.userName || 'N/A';
-                    const userId = data.userId || 'N/A';
-
-                    document.getElementById('firstName').textContent = `First Name: ${firstName}`;
-                    document.getElementById('userName').textContent = `Username: ${userName}`;
-                    document.getElementById('userId').textContent = `User ID: ${userId}`;
-                } else {
-                    console.log('Error fetching user information');
-                }
-            } catch (error) {
-                console.error(error);
-            }
-        }
-
-        // Example: Get the values of cookies
-        const userId = getCookie('userId');
-        const firstName = getCookie('firstName');
-        const userName = getCookie('userName');
-
-        // Display user information on the dashboard
-        if (userId && firstName && userName) {
-            document.getElementById('firstName').textContent = `First Name: ${firstName}`;
-            document.getElementById('userName').textContent = `Username: ${userName}`;
-            document.getElementById('userId').textContent = `User ID: ${userId}`;
-        } else {
-            console.log('One or more cookies not found or expired');
-        }
-
-        // Fetch the driver's information from the Lambda function
-        fetchDriverInfo();
-    </script>
-    <script src="dashboard.js"></script> <!-- Add a separate JavaScript file for dashboard functionality -->
 </body>
+<script>
+    loadDashboard();
+</script>
 </html>
