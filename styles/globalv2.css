@@ -48,7 +48,8 @@ nav button{
     color: #ffffff;
     display: flex;
     flex: row;
-    justify-content: center;
+    justify-content: space-evenly;
+    align-items: center;
         
     margin-top: 10px;
     margin-bottom: 10px;
@@ -60,7 +61,6 @@ nav button{
 }
 
 nav button img{
-    
     border-radius: 50%;
     width: 64px;
     height: 64px;
@@ -83,9 +83,11 @@ section{
     flex-direction: column;
     background-color: #fefefe;
 }
+
 section article{
     display: flex;
     justify-content: left;
+    flex-direction: column;
 
     margin: 10px;
     padding: 10px;
@@ -94,9 +96,6 @@ section article{
     box-shadow: 0px 0px 5px 5px #3e3e3e40;
 }
 
-section article h2{
-    justify-content: ;
-}
 
 
 aside{
