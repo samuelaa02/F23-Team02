@@ -1,3 +1,11 @@
+//user id is 'accountID'
+function getCookie(cookieID){
+    const cookie = document.cookie.split("; ").find((row) => row.startsWith(cookieID+"="))?.split("=")[1];
+    console.log(cookieID +": "+cookie);
+    return cookie;
+}
+
+
 function signIn(){
     
     var username = document.getElementById('username').value;
@@ -139,4 +147,95 @@ async function validateToken(pageType){
         return data;
     }
     
+}
+
+// Toggles the element with id1 off and id2 on with display_type display
+function switchContent(element_id1, element_id2, display_type){
+    document.getElementById(element_id1).style.display = "none";
+    document.getElementById(element_id2).style.display = display_type;
+}
+
+
+
+async function saveAccountInfo(){
+    const accountID = getCookie('accountID');
+    //get necessary fields
+    var fname = document.getElementById('fname-new').value;
+    var lname = document.getElementById('lname-new').value;
+    var email = document.getElementById('email-new').value;
+    var phone = document.getElementById('phone-new').value;
+    var username = document.getElementById('username-new').value;
+    var password = document.getElementById('password-new').value;
+    var cPassword = document.getElementById('cPassword-new').value;
+    console.log({first:fname,last:lname,email:email,phone:phone,username:username,password:password});
+    
+    //check if info is valid
+    if(checkFormat('word',fname) === false){
+        alert("First name must only contain alphabetic letters.");
+    }else if(checkFormat('word',lname) === false){
+        alert("Last name must only contain alphabetic letters.");
+    }else if(checkFormat('username',username)=== false){
+        alert("Invalid username\nMust only contains letters and numbers\nMust be between 6-20 characters in length");
+    }else if(password !== cPassword){
+        alert("Passwords must match.");
+    }else if(checkFormat("password",password) === false){
+        alert("Password must be 8-16 characters, contain at least one letter, one number and one special character.");
+    }else if(checkFormat("email",email)=== false){
+        alert("Invalid email.");
+    }else if(!(fname && lname && username && email && phone && password && cPassword)){
+        alert("Please fill out all fields.");
+    }else{
+        //true
+        //send info to lambda
+        var queryParams = "?token="+accountID+"&FirstName="+fname+"&LastName="+lname+"&Email="+email+"&Phone="+phone+"&Username="+username+"&Password="+password;
+        const res = await fetch('https://u76zsrtgq8.execute-api.us-east-1.amazonaws.com/team02-testing/updateAccount'+queryParams)
+        const data = await res.json();
+        console.log(data);
+        //was change successful?
+        if(data.status === "Success"){
+            alert("Successly updated information.");
+            //refresh data on page
+            switchContent("editable","static",'flex');
+        }
+        else{
+            alert("Error updating information");
+        }
+    }
+}
+
+async function loadAccountSettings(){
+    try{
+        const data = await validateToken('account');
+        
+        if(data.status==="Success"){
+            document.getElementById('user-name').innerHTML = data.userInfo.FirstName;
+
+            document.getElementById('fname').innerHTML = data.userInfo.FirstName;
+            document.getElementById('lname').innerHTML = data.userInfo.LastName;
+            document.getElementById('email').innerHTML = data.userInfo.Email;
+            document.getElementById('phone').innerHTML = data.userInfo.Phone;
+            document.getElementById('username').innerHTML = data.userInfo.Username;
+            document.getElementById('password').innerHTML = data.userInfo.Password;
+            
+            document.getElementById('fname-new').value = data.userInfo.FirstName;
+            document.getElementById('lname-new').value = data.userInfo.LastName;
+            document.getElementById('email-new').value = data.userInfo.Email;
+            document.getElementById('phone-new').value = data.userInfo.Phone;
+            document.getElementById('username-new').value = data.userInfo.Username;
+            document.getElementById('password-new').value = data.userInfo.Password;
+            document.getElementById('cPassword-new').value = data.userInfo.Password;
+
+            
+            document.getElementById("loading").style.display = 'none';
+            document.getElementById("content").style.display = 'flex';
+        }
+        else{
+            console.log("Error");
+        }
+
+    }
+    catch(err){
+        console.log("Validate token error",err);
+    }
+    return;
 }
