@@ -215,12 +215,12 @@ overlay.classList.remove('active')
 
 
 /* Add To Cart */
-
+var cart = [];
 
 function addToCart(btn, albumArt, album, artist, price) {
   btn.innerHTML = "Added!"
 
-
+/*
   var template = "";
  
   template += '<div class="col-sm-3 album_item" id="mini_album_item">';
@@ -233,6 +233,50 @@ function addToCart(btn, albumArt, album, artist, price) {
   template += '</div>';
  
   document.getElementById("cart").innerHTML += template;
+  */
+
+
+  var existingItem = cart.find(item => item.name === album);
+
+  if(existingItem)
+  {
+    existingItem.quantity += 1;
+  }
+  else
+  {
+    cart.push({
+        button: btn,
+        art: albumArt,
+        album: album,
+        artist: artist,
+        price: price,
+        quantity: 1
+    });
+  }
+
+  updateCart();
+
+}
+
+function updateCart()
+{
+    document.getElementById('cart').innerHTML = '';
+
+    cart.forEach(item => {
+        var cartItemDiv = document.createElement('div');
+        cartItemDiv.innerHTML = `
+        <img src="${item.art}" alt="${item.name} Image">
+        <span class="album_list_container" style="font-weight: bold; display: inline-block; margin-left: 20px; max-width: 350px;">Album: </span>${item.album}
+        <span style="font-weight: bold; display: inline-block; margin-left: 20px; max-width: 350px;">Artist: </span>${item.artist}
+        <span div class="item_price" style="font-weight: bold; display: inline-block;">Price: </span>${item.price}
+        <span style="font-weight: bold; display: inline-block;">Quantity: </span>${item.quantity}
+        <button id="removeFromCart" onclick="removeFromCart(this,${item.button})" style="display: inline-block; margin-top: 20px; float: right;">Remove</button>
+        `;
+        document.getElementById('cart').appendChild(cartItemDiv);
+    });
+
+    var totalPoints = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    document.getElementById('totalPoints').innerText = totalPoints;
 }
 
 function removeFromCart(button, btn) {
