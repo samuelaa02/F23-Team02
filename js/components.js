@@ -129,7 +129,7 @@ customElements.define("catalog-item", catalogItem);
 
 
               template += '<div class="col-sm-3 album_item" id="album_item">';
-              template += '<div class="item_thmb" id="album_art" style="background:url(' + albumArt + ')"></div>';
+              template += '<div class="item_thmb" id="album_art"><img src=' + albumArt + '></div>';
               template += '<div id="song_info">';
               template += '<div class="item_title"> <p style="font-weight: bold; display: inline-block;">Album: </p>' + album + '</div>';
               template += '<div class="artist_name"> <p style="font-weight: bold; display: inline-block;">Artist: </p>' + artist + '</p></div>';
@@ -224,15 +224,13 @@ function addToCart(btn, albumArt, album, artist, price) {
   var template = "";
  
   template += '<div class="col-sm-3 album_item" id="mini_album_item">';
-  template += '<div class="item_thmb" id="album_art" style="background:url(' + albumArt + ')"></div>';
+  template += '<div class="item_thmb"><img id="mini_album_art" src=' + albumArt + ' ></div>';
   template += '<div id="song_info">';
   template += '<div class="item_title"> <p style="font-weight: bold; display: inline-block;">Album: </p>' + album + '</div>';
-  template += '<div class="artist_name"> <p style="font-weight: bold; display: inline-block;">Artist: </p>' + artist + '</p></div>';
   template += '<div class="item_price"> <p style="font-weight: bold; display: inline-block;">Price: </p>' + price + ' points </div>';
   template += '</div>';
-  template += '<button id="removeFromCart" onclick="removeFromCart(this,\'' + btn + '\')" style="display: inline-block; margin-top: 20px; float: right;">Remove</button>';
+  template += '<button id="removeFromCart" onclick="removeFromCart(this,\'' + btn.id + '\')" style="display: inline-block; margin-top: 20px; float: right;">Remove</button>';
   template += '</div>';
-  template += "<hr>";
  
   document.getElementById("cart").innerHTML += template;
 }
