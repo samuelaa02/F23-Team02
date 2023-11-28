@@ -270,7 +270,7 @@ function updateCart()
         <span style="font-weight: bold; display: inline-block; margin-left: 20px; max-width: 350px;">Artist: </span>${item.artist}
         <span div class="item_price" style="font-weight: bold; display: inline-block;">Price: </span>${item.price}
         <span style="font-weight: bold; display: inline-block;">Quantity: </span>${item.quantity}
-        <button id="removeFromCart" onclick="removeFromCart(this,${item.button})" style="display: inline-block; margin-top: 20px; float: right;">Remove</button>
+        <button id="removeItem" onclick="removeItem(${item})" style="display: inline-block; margin-top: 20px; float: right;">Remove</button>
         `;
         document.getElementById('cart').appendChild(cartItemDiv);
     });
@@ -279,9 +279,20 @@ function updateCart()
     document.getElementById('totalPoints').innerText = totalPoints;
 }
 
+/*
 function removeFromCart(button, btn) {
   var item = button.parentNode;
   item.parentNode.removeChild(item);
+}
+*/
+
+function removeItem(itemId)
+{
+    var itemToRemove = document.getElementById(itemId);
+    if(itemToRemove)
+    {
+        itemToRemove.remove();
+    }
 }
 
 // Function to sort items by name A to Z
