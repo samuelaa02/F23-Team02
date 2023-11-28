@@ -88,6 +88,9 @@ section article p{
 }
 
 section article input{
+    border-radius: 50em;
+    padding: 0.75em;
+    border:#3498db solid 2px;
     line-height: 150%;
     margin: 5px;
     margin-left: 20px;
@@ -123,6 +126,19 @@ section article button{
     border: none;
     border-radius: 2em;
     align-self: flex-end;
+}
+
+.btn-red{
+    background-color: #bd0000;
+}
+
+.horizontal{
+    display:flex;
+    flex-direction: row;
+}
+
+.btn-red:hover{
+    background-color: #ff0000;
 }
 
 section article button:hover{
@@ -202,6 +218,16 @@ section article span #cancel:hover{
 #sponsor-preview{
     display:none;
     flex-direction:column;
+}
+
+#user-result{
+    display:none;
+    flex-direction: column;
+}
+
+#user-result-edit{
+    display:none;
+    flex-direction: column;
 }
 
 
