@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
     <script src="../js/account.js"></script>
+    <script src="../js/sponsorPages.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Driver Dashboard</title>
+    <title>Sponsor Dashboard</title>
     <link rel="stylesheet" href="../styles/globalv2.css">
 </head>
 
@@ -18,13 +19,14 @@
     <div id="content">
         <!--Navgation Bar: links to other pages go here-->
         <nav>
-            <button id="nav-account">
+            <button id="nav-account" onclick="window.location.href='./sponsor_settings.html'">
                 <img src="../imgs/account-icon.png">
-                <p id="user-name"></p>
+                <p>Welcome, <span id="user-name">Sponsor</span></p>
             </button>
-            <button id="nav-dashboard" onclick="window.location.href='./driver_dashboard.html'">Dashboard</button>
-            <button>Catalog</button>
-            <button>Points</button>
+            <button id="nav-dashboard" onclick="window.location.href='./sponsor_dashboard.html'">Dashboard</button>
+            <button onclick="window.location.href='./sponsor_organization.html'">Sponsor</button>
+            <button onclick="window.location.href='./sponsor_catalog.html'">Catalog</button>
+            <button onclick="window.location.href='./sponsor_management.html'">User Management</button>
             <button id="nav-logout" onclick="logout()">Logout</button>
             <button id="nav-about" onclick="window.location.href='../aboutPage.html'">About Us</button>
         </nav>
@@ -32,7 +34,9 @@
         <section>
             <article>
                 <h2>Sponsor Organization</h2>
-                <p>hello</p>
+                <h1><span id="sponsor-name"></span></h1>
+                <p><span id="sponsor-desc"></span></p>
+                <h1>Encouraging <span id="driver-count"></span> drivers to drive safely!</h1>
             </article>
         </section>
         <!--Side bar for quick information that the user might want-->
@@ -41,4 +45,8 @@
         </aside>
     </div>
 </body>
+
+<script>
+    loadDashboard();
+</script>
 </html>

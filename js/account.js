@@ -151,8 +151,12 @@ async function validateToken(pageType){
 
 // Toggles the element with id1 off and id2 on with display_type display
 function switchContent(element_id1, element_id2, display_type){
-    document.getElementById(element_id1).style.display = "none";
-    document.getElementById(element_id2).style.display = display_type;
+    if(element_id1 !== "none"){
+        document.getElementById(element_id1).style.display = "none";
+        document.getElementById(element_id2).style.display = display_type;
+    }else{
+        document.getElementById(element_id2).style.display = display_type;
+    }
 }
 
 
@@ -225,9 +229,7 @@ async function loadAccountSettings(){
             document.getElementById('password-new').value = data.userInfo.Password;
             document.getElementById('cPassword-new').value = data.userInfo.Password;
 
-            
-            document.getElementById("loading").style.display = 'none';
-            document.getElementById("content").style.display = 'flex';
+            switchContent("loading","content","flex");
         }
         else{
             console.log("Error");
@@ -238,4 +240,20 @@ async function loadAccountSettings(){
         console.log("Validate token error",err);
     }
     return;
+}
+
+async function getSponsorInfo(sponsorID){
+    var apiURL = 'https://u76zsrtgq8.execute-api.us-east-1.amazonaws.com/team02-testing/get-sponsor-info?SponsorOrgID=' + sponsorID;
+    const res = await fetch(apiURL);
+    const data = await res.json();
+    console.log(data);
+    return data;
+}
+
+async function switchSponsor(accountID, sponsorID){
+    console.log({AccountID:accountID,SponsorID:sponsorID});
+    var apiURL = 'https://u76zsrtgq8.execute-api.us-east-1.amazonaws.com/team02-testing/change-user-sponsor?accountID='+accountID+"&sponsorOrgID="+sponsorID;
+    const res = await fetch(apiURL);
+    const data = await res.json();
+    console.log(data);
 }
