@@ -1,77 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<script src="../js/account.js"></script>
-<script src="../js/sponsorPages.js"></script>
+    <script src="../js/account.js"></script>
+    <script src="../js/sponsorPages.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sponsor Dashboard</title>
-    <link rel="stylesheet" href="../styles/global-styling.css"> 
-    <link rel="stylesheet" href="../styles/sponsor-dash.css"> 
+    <link rel="stylesheet" href="../styles/globalv2.css">
 </head>
 
 <body>
+    <!--Loading Screen until fields are populated-->
     <div id="loading">
         <div class="spinner"></div>
     </div>
 
+    <!--Actual Page Content-->
     <div id="content">
-        <div class="nav-bar">
-            <div class="vertical">
-                <button id="account" onclick="window.location.href='./sponsor_settings.html'">
-                    <div id="user">
-                        <img id="pfp" src="../imgs/account-icon.png">
-                        <h1 id="user-name">Name goes here</h1>
-                    </div>
-                </button>
-                <button onclick="window.location.href='./sponsor_dashboard.html'"><h1>Dashboard</h1></button>
-                <button onclick="window.location.href='./sponsor_catalog.html'"><h1>Organization</h1></button>
-                <button onclick="window.location.href='./sponsor_catalog.html'"><h1>Catalog</h1></button>
-                <button onclick="window.location.href='./sponsor_management.html'"><h1>Manage Members</h1></button>
-                <button id="logout" onclick="logout()"><h1>Logout</h1></button>
-                <button id="aboutUs" onclick="window.location.href='../aboutPage.html'"><h1>About Us</h1></button>
-            </div>
-        </div>
-        <div class="center">
-            <div class="vertical">
-                <div class="card">
-                    <div class="card-title">
-                        <h2>Sponsor Organization</h2>
-                        <h2 id="sponsor-name"></h2>
-                    </div>
-                    <div class="card-subtitle">
-                        <h2 id="driver-count">Encouraging ## members to drive safely!</h2>
-                    </div>
-                    <div class="card-body">
-                        <h3 id="spon-desc">Sponsor description here...</h3>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="side-bar">
-            <div class="vertical">
-                <div class="quick-logs">
-                    <div class="quick-log-title">
-                        <h1>Recent Activity</h1>
-                    </div>
-                    <div id="quick-log-entries">
-                        <div class="ql-entry">
-                            <p>DTS</p>
-                            <p>Action</p>
-                        </div>
-                    </div>
-                    <div class="ql-entry">
-                        <p>DTS</p>
-                        <p>Action</p>
-                    </div>
-                </div>
-                </div>
-            </div>
-        </div>
+        <!--Navgation Bar: links to other pages go here-->
+        <nav>
+            <button id="nav-account" onclick="window.location.href='./sponsor_settings.html'">
+                <img src="../imgs/account-icon.png">
+                <p>Welcome, <span id="user-name">Sponsor</span></p>
+            </button>
+            <button id="nav-dashboard" onclick="window.location.href='./sponsor_dashboard.html'">Dashboard</button>
+            <button onclick="window.location.href='./sponsor_organization.html'">Sponsor</button>
+            <button onclick="window.location.href='./sponsor_catalog.html'">Catalog</button>
+            <button onclick="window.location.href='./sponsor_management.html'">User Management</button>
+            <button id="nav-logout" onclick="logout()">Logout</button>
+            <button id="nav-about" onclick="window.location.href='../aboutPage.html'">About Us</button>
+        </nav>
+        <!--Main content of page-->
+        <section>
+            <article>
+                <h2>Sponsor Organization</h2>
+                <h1><span id="sponsor-name"></span></h1>
+                <p><span id="sponsor-desc"></span></p>
+                <h1>Encouraging <span id="driver-count"></span> drivers to drive safely!</h1>
+            </article>
+        </section>
+        <!--Side bar for quick information that the user might want-->
+        <aside>
+            <div></div>
+        </aside>
     </div>
-
 </body>
+
 <script>
     loadDashboard();
 </script>
