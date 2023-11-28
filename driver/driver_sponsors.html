@@ -33,10 +33,30 @@
         <!--Main content of page-->
         <section>
             <article>
-                <h2>Sponsor Organization</h2>
-                <h1><span id="sponsor-name"></span></h1>
-                <p><span id="sponsor-desc"></span></p>
+                <h2>Your Current Sponsor Organization</h2>
+                <h1><span id="sponsor-name">Sponsor Name</span></h1>
+                <p><span id="sponsor-desc">Sponsor Description</span></p>
+                
+                <h1>Current Points: <span id="curr-points"></span></h1>
             </article>
+            <article>
+                <h2>Select your sponsor</h2>
+                <span>
+                    <select id="sponsor-select" onchange="previewSponsor()">
+                    </select>
+                </span>
+                <span id="sponsor-preview">
+                    <h2>Sponsor Organization Preview</h2>
+                    <h1 id="preview-name">Sponsor Name</h1>
+                    <p id="preview-desc">Sponsor Description</p>
+                    <br>
+                    <span id="warning">
+                        Warning! Switching sponsors resets your points. This is irreversible.
+                        <button id="switch-sponsor" onclick="switchSponsor(getCookie('accountID'),document.getElementById('sponsor-select').value)">Choose this sponsor</button>
+                    </span>
+                </span>
+            </article>
+            
         </section>
         <!--Side bar for quick information that the user might want-->
         <aside>
@@ -46,6 +66,6 @@
 </body>
 
 <script>
-    loadDashboard();
+    loadSponsors();
 </script>
 </html>

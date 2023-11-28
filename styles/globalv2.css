@@ -61,7 +61,7 @@ section{
     display: flex;
     flex-direction: column;
     background-color: #fefefe;
-    overflow-y: scroll;
+    overflow-y: auto;
     max-height: 100vh;
 }
 section article{
@@ -93,6 +93,23 @@ section article input{
     margin-left: 20px;
     width: 50%;
 }
+
+select,option {
+    font-size: large;
+    font-weight: bold;
+    flex:1;
+    width: 66%;
+    
+    padding: 0.75em;
+    background-color: #dddddd;
+    color:#fefefe;
+    color:black;
+    border: #3498db solid 2px;
+    border-radius: 2em;
+    align-self: left;
+
+}
+
 
 section article button{
     font-size: large;
@@ -162,6 +179,29 @@ nav #nav-logout:hover{
 
 section article span #cancel:hover{
     background-color: #bd0000;
+}
+
+#switch-sponsor:hover{
+    background-color: #00bd00;
+}
+
+#warning{
+    background-color: #ff0000;
+    border:#bd0000 dashed 4px;
+    border-radius: 0.5em;
+    flex: content;
+    flex-direction: row;
+    font-size:large ;
+    font-weight: bolder;
+    color:white;
+
+    padding: 0.5em;
+    width: fit-content;
+}
+
+#sponsor-preview{
+    display:none;
+    flex-direction:column;
 }
 
 
