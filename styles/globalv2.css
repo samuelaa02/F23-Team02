@@ -221,12 +221,12 @@ section article span #cancel:hover{
     flex-direction:column;
 }
 
-#user-result{
+#user-result, #sponsor-result-edit{
     display:none;
     flex-direction: column;
 }
 
-#user-result-edit{
+#user-result-edit, #sponsor-result-edit{
     display:none;
     flex-direction: column;
 }
