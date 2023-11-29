@@ -203,6 +203,40 @@ async function saveAccountInfo(){
     }
 }
 
+async function savePassword(){
+    //const accountID = getCookie('accountID');
+    //get necessary fields
+    var email = document.getElementById('update-email').value;
+    var password = document.getElementById('update-password').value;
+    var cPassword = document.getElementById('update-cPassword').value;
+    
+    //check if info is valid
+    if(password !== cPassword){
+        alert("Passwords must match.");
+    }else if(checkFormat("password",password) === false){
+        alert("Password must be 8-16 characters, contain at least one letter, one number and one special character.");
+    }else if(checkFormat("email",email)=== false){
+        alert("Invalid email.");
+    }else{
+        //true
+        //send info to lambda
+        console.log("valid credentials");
+        var queryParams = "?Email="+email+"&Password="+password;
+        const res = await fetch('https://u76zsrtgq8.execute-api.us-east-1.amazonaws.com/team02-testing/updatePassword'+queryParams);
+        const data = await res.json();
+        console.log(data);
+        //was change successful?
+        if(data.status === "Success"){
+            alert("Successly updated password.");
+            //refresh data on page
+            //switchContent("editable","static",'flex');
+        }
+        else{
+            alert("Error updating information");
+        }
+    }
+}
+
 async function loadAccountSettings(){
     try{
         const data = await validateToken('account');
