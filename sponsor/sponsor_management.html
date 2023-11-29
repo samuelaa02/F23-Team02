@@ -41,7 +41,7 @@
                                 <option value = "Driver">Driver</option>
                                 <option value = "Sponsor">Sponsor</option>
                             </select>
-                            <select id="search-user-identity">
+                            <select id="search-type">
                                 <option value = "" disable selected> Search by</option>
                                 <option value = "username">Username</option>
                                 <option value = "email">Email</option>
@@ -54,6 +54,7 @@
             </article>
             <article id="user-result">
                 <h2>User Result for <span id="search-term"></span></h2>
+                <h1>User Type: <span id="result-usertype"></span></h1>
                 <h1>Username: <span id="result-username"></span></h1>
                 <h1>Email: <span id="result-email"></span></h1>
                 <h1>First Name: <span id="result-fName"></span></h1>
@@ -67,6 +68,10 @@
             <span id="user-result-edit">
                 <article>
                     <h2>Edit User Info<span id="search-term"></span></h2>
+                    <h1>User Type:<select>
+                        <option value="Driver">Driver</option>
+                        <option value="Sponsor">Sponsor</option>
+                    </select></h1>
                     <h1>Username: <span id="result-username"></span></h1>
                     <h1>Email: <span id="result-email"></span></h1>
                     <h1>First Name: <span id="result-fName"></span></h1>

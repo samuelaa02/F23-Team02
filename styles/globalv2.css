@@ -135,6 +135,7 @@ section article button{
 .horizontal{
     display:flex;
     flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .btn-red:hover{

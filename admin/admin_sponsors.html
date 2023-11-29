@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script src="../js/account.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sponsor Dashboard</title>
+    <link rel="stylesheet" href="../styles/globalv2.css">
+</head>
+
+<body>
+    <!--Loading Screen until fields are populated-->
+    <div id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!--Actual Page Content-->
+    <div id="content">
+        <!--Navgation Bar: links to other pages go here-->
+        <nav>
+            <button id="nav-account" onclick="window.location.href='./sponsor_settings.html'">
+                <img src="../imgs/account-icon.png">
+                <p>Welcome, <span id="user-name">Admin</span></p>
+            </button>
+            <button id="nav-dashboard" onclick="window.location.href='./admin_dashboard.html'">Dashboard</button>
+            <button onclick="window.location.href='./admin_sponsors.html'">Sponsor Management</button>
+            <button onclick="window.location.href='./admin_management.html'">User Management</button>
+            <button onclick="window.location.href='./admin_logs.html'">Logs</button>
+            <button id="nav-logout" onclick="logout()">Logout</button>
+            <button id="nav-about" onclick="window.location.href='../aboutPage.html'">About Us</button>
+        </nav>
+        <!--Main content of page-->
+        <section>
+            <article>
+                <h2>Manage Sponsor Organizations</h2>
+                <h1>
+                    <div class="horizontal">
+                            <select id="sponsor-list">
+                                <option value = "" disable selected> Select Sponsor</option>
+                            </select>
+                        <button onclick="//submit sponsor search">Search</button>
+                    </div>
+                </h1>
+            </article>
+            <article id="sponsor-result">
+                <h2>Result for <span id="search-term"></span></h2>
+                <h1>Sponsor: <span></span></h1>
+                <h1>Description: <span></span></h1>
+                <h1>Point Conversion Rate: <span></span></h1>
+                <h1>Good behavior Rules: <span></span></h1>
+                <div class="horizontal">
+                    <h1>Drivers: <span></span></h1>
+                    <h1>Sponsor Users: <span></span></h1></div>
+                
+                <span>
+                    <button onclick="switchContent('sponsor-result','sponsor-result-edit','flex')">Edit</button>
+                </span>
+            </article>
+            <span id="sponsor-result-edit">
+                <article>
+                    <h2>Edit Sponsor Info<span id="search-term"></span></h2>
+                    <span>
+                        <button>Save</button>
+                        <button id="cancel" onclick="switchContent('sponsor-result-edit','sponsor-result','flex')">Cancel</button>
+                        <button class="btn-red" id="remove-user">Remove Sponsor</button>
+                    </span>
+                </article>
+            </span>
+            
+        </section>
+        <!--Side bar for quick information that the user might want-->
+        <aside>
+            <div></div>
+        </aside>
+    </div>
+</body>
+
+<script>
+    loadDashboard();
+</script>
+</html>
