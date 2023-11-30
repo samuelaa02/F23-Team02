@@ -1,70 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+    <script src="../js/account.js"></script>
+    <script src="../js/sponsorPages.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard Demo</title>
-    <link rel="stylesheet" href="../styles/styles.css">
-    <link rel="stylesheet" href="../styles/dashboard.css"> 
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../styles/globalv2.css">
 </head>
+
 <body>
-    <header>
-        <h1>Admin Dashboard</h1>
+    <!--Loading Screen until fields are populated-->
+    <div id="loading">
+        <div class="spinner"></div>
+    </div>
 
-    <main>
-        <div id="banner">
-            <a href="../index.html">
-                <img id="home" src="../imgs/home-icon.png">
-            </a>
-
-            <div class="dropdown">
-                <img id="home" class="dropbtn" src="../imgs/settings-icon.png">
-                <div class="dropdown-content">
-                    <a href="Admin_account.html">Profile</a>
-                    <a href="Admin_settings.html">Settings</a>
-                    <a href="logout.html">Logout</a>
-                </div>
-            </div>
-        </div>
-
-        <section class="dashboard">
-            <h2>Welcome, [Admin Name]</h2>
-            <div class="points">
-                <p>Total Points: [Total Points]</p> 
-            </div>
-            <div class="actions">
-                <button href="Admin_account.html">My Account</button>
-                <button href="Admin_catalog.html">Admin's Catalog</button>
-                <!-- <button href="logout.html">Logout</button> -->
-                <button href=:Admin_points.html">Point Tracking</button>
-            </div>
-            <div class="Admin">
-                <p>Current Admin: [Admin Name]</p>
-            </div>
+    <!--Actual Page Content-->
+    <div id="content">
+        <!--Navgation Bar: links to other pages go here-->
+        <nav>
+            <button id="nav-account" onclick="window.location.href='./sponsor_settings.html'">
+                <img src="../imgs/account-icon.png">
+                <p>Welcome, <span id="user-name">Admin</span></p>
+            </button>
+            <button id="nav-dashboard" onclick="window.location.href='./admin_dashboard.html'">Dashboard</button>
+            <button onclick="window.location.href='./admin_sponsors.html'">Sponsor Management</button>
+            <button onclick="window.location.href='./admin_management.html'">User Management</button>
+            <button onclick="window.location.href='./admin_logs.html'">Logs</button>
+            <button id="nav-logout" onclick="logout()">Logout</button>
+            <button id="nav-about" onclick="window.location.href='../aboutPage.html'">About Us</button>
+        </nav>
+        <!--Main content of page-->
+        <section>
+            <article>
+                <h2>Admin Dashboard</h2>
+            </article>
         </section>
-        <section class="purchase-status">
-            <h2>Purchase Status</h2>
-            <ul id="purchaseList">
-                
-            </ul>
-        </section>
-        <section class="points-status">
-            <h2>Points Status</h2>
-            <ul id="pointsList">
-
-            </ul>
-        </section>
-    </main>
-    <footer>
-        <p><a href="../aboutPage.html">About</a></p>
-        <div class="profile-dropdown">
-            <!-- <button id="profileDropdownBtn">Profile</button> -->
-            <div class="dropdown-content">
-                <a href="Admin_settings.html">Settings</a>
-                <a href="Admin_account.html">My Account</a>
-            </div>
-        </div>
-    </footer>
-    <script src="dashboard.js"></script> <!-- Add a separate JavaScript file for dashboard functionality -->
+        <!--Side bar for quick information that the user might want-->
+        <aside>
+            <div></div>
+        </aside>
+    </div>
 </body>
+
+<script>
+    loadDashboard();
+</script>
 </html>
