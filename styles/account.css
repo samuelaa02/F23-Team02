@@ -164,6 +164,12 @@ input:focus {
     background-color:rgb(163, 163, 163);
 }
 
+.cart-item{
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+
 .modal {
     position: fixed;
     top: 50%;
@@ -282,6 +288,11 @@ input:focus {
     width: 64vw;
 }
 
+.album-info{
+    display: flex;
+    flex-direction: row;
+}
+
 #album_art {
     float: left;
 }
@@ -302,4 +313,15 @@ input:focus {
 
 .item_price {
     line-height: 0px;
+}
+
+#total {
+    text-align: right;
+    padding: 30px;
+}
+
+#purchase {
+    text-align: right;
+    padding-bottom: 30px;
+    padding-right: 30px;
 }
