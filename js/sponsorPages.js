@@ -35,12 +35,16 @@ async function searchForUser(){
         //get user data and send to api
         
         var userType = document.getElementById("search-user-type").value;
-        var userDiscrim = document.getElementById("search-user-identity").value;
-        var userTerm = document.getElementById("search-user-string").value;
+        var searchType = document.getElementById("search-type").value;
+        var searchTerm = document.getElementById("search-user-string").value;
 
         //if fields are filled
         if(userType && userDiscrim && userTerm){
             //send to api
+            var queryParams = "?searchType="+searchType+"&userType="+userType+"&searchTerm="+searchTerm;
+            const res = await fetch('https://u76zsrtgq8.execute-api.us-east-1.amazonaws.com/team02-testing/UserSearch'+queryParams);
+            const data = await res.json();
+            console.log(data);
             //succesfful match
                 //populate
                 switchContent("none","user-result","flex");
