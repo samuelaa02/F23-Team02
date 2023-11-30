@@ -410,3 +410,16 @@ sortItems();
 
 
 sortItems();
+
+
+async function purchase(){
+    var amount = document.getElementById('totalPoints').innerText
+    var reason = "purchase";
+    var user = getCookie("accountID");
+    if(amount && reason){
+        var queryParams = "?amount="+amount+"&reason="+reason+"&awardType="+"Remove"+"&token="+user;
+        const res = await fetch('https://u76zsrtgq8.execute-api.us-east-1.amazonaws.com/team02-testing/awardPoints'+queryParams);
+        const data = await res.json();
+        console.log(data);
+    }
+}
