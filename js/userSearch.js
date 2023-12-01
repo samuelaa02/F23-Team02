@@ -1,21 +1,21 @@
-"use strict";
+async function getUser(){
+  var userType = document.getElementById("userType").value;
+  var searchType = document.getElementById("searchType").value;
+  var userName = document.getElementById("userName").value;
 
-window.onload = function (){
-    getUsers();
+  var queryParams = "?userType="+userType+"&searchType="+searchType+"&user="+userName;
+
+  const res = await fetch('https://u76zsrtgq8.execute-api.us-east-1.amazonaws.com/team02-testing/UserSearch'+queryParams)
+  const data = await res.json();
+  console.log(data);
+
+  if(data.status === "Success"){
+    //refresh data on page
+    var user = "<p>" + data.result.LastName + ", " + data.result.FirstName + "</p>";
+    document.getElementById("user-info").innerHTML = user;
+  }
+  else{
+      alert("Error retrieving user information");
+  }
+
 }
-
-function getUsers(){
-    fetch ('https://u76zsrtgq8.execute-api.us-east-1.amazonaws.com/UserSearch').then(res => {
-        return res.json();
-    })
-    .then(data => {
-        console.log(data);
-        document.getElementById("project-name").innerHTML = data.ProductName;
-        document.getElementById("team-num").innerHTML = data.TeamNum;
-        document.getElementById("version").innerHTML = data.Version;
-        document.getElementById("project-desc").innerHTML = data.ProductDesc;
-        document.getElementById("release").innerHTML = data.ReleaseDate.slice(0,10);
-    })
-    .catch(error => console.log(error));
-}
-
