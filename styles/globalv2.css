@@ -128,6 +128,20 @@ section article button{
     align-self: flex-end;
 }
 
+.btn-blue{
+    font-size: large;
+    font-weight: bold;
+    width: fit-content;
+    padding: 0.75em;
+    padding-left: 1.5em;
+    padding-right:1.5em;
+    background-color: #3498db;
+    color:#fefefe;
+    border: none;
+    border-radius: 2em;
+    align-self: flex-end;
+}
+
 .btn-red{
     background-color: #bd0000;
 }
@@ -142,11 +156,11 @@ section article button{
     background-color: #ff0000;
 }
 
-section article button:hover{
+.btn-blue:hover, section article button:hover{
     background-color: #66b1e3;
     transform: scale(1.05);
 }
-section article button:active{
+.btn-blue:hover, section article button:active{
     background-color: #2483c2;
 }
 
@@ -221,7 +235,7 @@ section article span #cancel:hover{
     flex-direction:column;
 }
 
-#user-result, #sponsor-result-edit{
+#user-result, #sponsor-result, #new-sponsor{
     display:none;
     flex-direction: column;
 }

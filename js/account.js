@@ -159,7 +159,10 @@ function switchContent(element_id1, element_id2, display_type){
     }
 }
 
-
+function escapeCharacterize(inputString){
+    var escapedString = inputString.replace(/'/g, "\\'");
+    return escapedString;
+}
 
 async function saveAccountInfo(){
     const accountID = getCookie('accountID');
