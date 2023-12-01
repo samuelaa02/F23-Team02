@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <script src="../js/account.js"></script>
+    <script src="../js/adminPages.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +19,7 @@
     <div id="content">
         <!--Navgation Bar: links to other pages go here-->
         <nav>
-            <button id="nav-account" onclick="window.location.href='./sponsor_settings.html'">
+            <button id="nav-account" onclick="window.location.href='./admin_settings.html'">
                 <img src="../imgs/account-icon.png">
                 <p>Welcome, <span id="user-name">Admin</span></p>
             </button>
@@ -35,19 +36,18 @@
                 <h2>Manage Sponsor Organizations</h2>
                 <h1>
                     <div class="horizontal">
-                            <select id="sponsor-list">
+                            <select id="sponsor-list" onchange="getSponsorInfo()">
                                 <option value = "" disable selected> Select Sponsor</option>
                             </select>
-                        <button onclick="//submit sponsor search">Search</button>
                     </div>
                 </h1>
             </article>
             <article id="sponsor-result">
                 <h2>Result for <span id="search-term"></span></h2>
-                <h1>Sponsor: <span></span></h1>
-                <h1>Description: <span></span></h1>
-                <h1>Point Conversion Rate: <span></span></h1>
-                <h1>Good behavior Rules: <span></span></h1>
+                <h1>Sponsor Name: <span id="sponsor-name"></span></h1>
+                <h1>Description: <span id="sponsor-desc">Description</span></h1>
+                <h1>Point Conversion Rate: <span id="sponsor-rate"></span></h1>
+                <h1>Good behavior Rules: <span id="sponsor-rules"></span></h1>
                 <div class="horizontal">
                     <h1>Drivers: <span></span></h1>
                     <h1>Sponsor Users: <span></span></h1></div>
@@ -57,23 +57,37 @@
                 </span>
             </article>
             <span id="sponsor-result-edit">
-                <article id="sponsor-result">
-                    <h2>Editing Sponsor Organization: <span id="search-term"></span></h2>
-                    <h1>Sponsor: <span></span></h1>
-                    <h1>Description: <span></span></h1>
-                    <h1>Point Conversion Rate: <span></span></h1>
-                    <h1>Good behavior Rules: <span></span></h1>
+                <article>
+                    <h2>Editing Sponsor</h2>
+                    <h1>Sponsor Name: <input type="text" id="edit-sponsor-name"></input></h1>
+                    <h1>Description: <input type="text" id="edit-sponsor-desc"></input></h1>
+                    <h1>Point Conversion Rate (0-1): <input type="text" id="edit-sponsor-rate"></input></h1>
+                    <h1>Good behavior Rules: <input type="text" id="edit-sponsor-rules"></input></h1>
                     <div class="horizontal">
-                        <h1>Drivers: <span></span></h1>
+                         <h1>Drivers: <span></span></h1>
                         <h1>Sponsor Users: <span></span></h1></div>
-                    
+                
                     <span>
-                        <button>Save</button>
+                        <button id="save-sponsor" onclick="updateSponsor()">Save</button>
                         <button id="cancel" onclick="switchContent('sponsor-result-edit','sponsor-result','flex')">Cancel</button>
-                        <button class="btn-red" id="remove-user">Remove Sponsor</button>
+                        <button class="btn-red" id="remove-sponsor">Delete Sponsor</button>
                     </span>
                 </article>
             </span>
+
+            <button id="new-sponsor-btn" class="btn-blue" onclick="switchContent('new-sponsor-btn','new-sponsor', 'flex')">New Sponsor</button>
+            <article id="new-sponsor">
+                <h2>Create a New Sponsor Organization</h2>
+                <h1>Sponsor Name: <input type="text" id="new-sponsor-name"></input></h1>
+                <h1>Description: <input type="text" id="new-sponsor-desc"></input></h1>
+                <h1>Point Conversion Rate (0-1): <input type="text" id="new-sponsor-rate"></input></h1>
+                <h1>Good behavior Rules: <input type="text" id="new-sponsor-rules"></input></h1>
+                
+                <span>
+                    <button id="save-sponsor" onclick="createSponsor()">Save</button>
+                    <button id="cancel" onclick="switchContent('new-sponsor','new-sponsor-btn','flex')">Cancel</button>
+                </span>
+            </article>
             
         </section>
         <!--Side bar for quick information that the user might want-->
@@ -84,6 +98,6 @@
 </body>
 
 <script>
-    loadDashboard();
+    getSponsorList();
 </script>
 </html>
