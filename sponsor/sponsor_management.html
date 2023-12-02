@@ -1,96 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-<script src="../js/account.js"></script>
-<script src="../js/userSearch.js"></script>
-<script src="../js/sponsorPages.js"></script>
+    <script src="../js/account.js"></script>
+    <script src="../js/sponsorPages.js"></script>
+    <script src="../js/userSearch.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sponsor Driver Management</title>
-    <link rel="stylesheet" href="../styles/global-styling.css"> 
-    <link rel="stylesheet" href="../styles/sponsor-dash.css"> 
+    <title>Sponsor Dashboard</title>
+    <link rel="stylesheet" href="../styles/globalv2.css">
 </head>
 
 <body>
+    <!--Loading Screen until fields are populated-->
     <div id="loading">
         <div class="spinner"></div>
     </div>
 
+    <!--Actual Page Content-->
     <div id="content">
-        <div class="nav-bar">
-            <div class="vertical">
-                <button id="account" onclick="window.location.href='./sponsor_settings.html'">
-                    <div id="user">
-                        <img id="pfp" src="../imgs/account-icon.png">
-                        <h1 id="user-name">Name goes here</h1>
-                    </div>
-                </button>
-                <button onclick="window.location.href='./sponsor_dashboard.html'"><h1>Dashboard</h1></button>
-                <button onclick="window.location.href='./sponsor_catalog.html'"><h1>Organization</h1></button>
-                <button onclick="window.location.href='./sponsor_catalog.html'"><h1>Catalog</h1></button>
-                <button onclick="window.location.href='./sponsor_management.html'"><h1>Manage Members</h1></button>
-                <button id="logout" onclick="logout()"><h1>Logout</h1></button>
-                <button id="aboutUs" onclick="window.location.href='../aboutPage.html'"><h1>About Us</h1></button>
-            </div>
-        </div>
-        <div class="center">
-            <div class="vertical">
-                <div class="card">
-                    <div class="card-title">
-                        <h2>Manage Users</h2>
-                        <h2 id="sponsor-name"></h2>
-                    </div>
-                    <div class="card-subtitle">
-                        <select id = "userType">
-                            <option value = "" disable selected> Select Member Type</option>
-                            <option value = "Driver">Driver</option>
-                            <option value = "Sponsor">Sponsor</option>
-                        </select>
-                        <select id="searchType">
-                            <option value = "" disable selected> Search by</option>
-                            <option value = "Username">Username</option>
-                            <option value = "Email">Email</option>
-                        </select>
+        <!--Navgation Bar: links to other pages go here-->
+        <nav>
+            <button id="nav-account" onclick="window.location.href='./sponsor_settings.html'">
+                <img src="../imgs/account-icon.png">
+                <p>Welcome, <span id="user-name">Sponsor</span></p>
+            </button>
+            <button id="nav-dashboard" onclick="window.location.href='./sponsor_dashboard.html'">Dashboard</button>
+            <button onclick="window.location.href='./sponsor_organization.html'">Sponsor</button>
+            <button onclick="window.location.href='./sponsor_catalog.html'">Catalog</button>
+            <button onclick="window.location.href='./sponsor_management.html'">User Management</button>
+            <button id="nav-logout" onclick="logout()">Logout</button>
+            <button id="nav-about" onclick="window.location.href='../aboutPage.html'">About Us</button>
+        </nav>
+        <!--Main content of page-->
+        <section>
+            <article>
+                <h2>Manage Users</h2>
+                <h1>
+                    <div class="horizontal">
+                            <select id="userType">
+                                <option value = "" disable selected> Select Member Type</option>
+                                <option value = "Driver">Driver</option>
+                                <option value = "Sponsor">Sponsor</option>
+                            </select>
+                            <select id="searchType">
+                                <option value = "" disable selected> Search by</option>
+                                <option value = "Username">Username</option>
+                                <option value = "Email">Email</option>
+                            </select>
                         
-                        <input id="userName" type="search">
+                        <input type="search" id="userName">
                         <button onclick="getUser()">Search</button>
                     </div>
-                    <div class="card-body">
-                        <div id="user-info"></div>
-
-                        <div id="edit-user"></div>
-                    </div>
-                    <div class="card-footer">
-                        <button >Edit info</button>
-                        <button> Remove User</button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="side-bar">
-            <div class="vertical">
-                <div class="quick-logs">
-                    <div class="quick-log-title">
-                        <h1>Recent Activity</h1>
-                    </div>
-                    <div id="quick-log-entries">
-                        <div class="ql-entry">
-                            <p>DTS</p>
-                            <p>Action</p>
-                        </div>
-                    </div>
-                    <div class="ql-entry">
-                        <p>DTS</p>
-                        <p>Action</p>
-                    </div>
-                </div>
-                </div>
-            </div>
-        </div>
+                </h1>
+            </article>
+            <article id="user-result">
+                <h2>User Result for <span id="search-term"></span></h2>
+                <h1>User Type: <span id="result-usertype"></span></h1>
+                <h1>Username: <span id="result-username"></span></h1>
+                <h1>Email: <span id="result-email"></span></h1>
+                <h1>First Name: <span id="result-fName"></span></h1>
+                <h1>Last Name: <span id="result-lName"></span></h1>
+                <h1>Phone: <span id="result-phone"></span></h1>
+                <h1>Password: <span id="result-password"></span></h1>
+                <span>
+                    <button onclick="switchContent('user-result','user-result-edit','flex')">Edit</button>
+                </span>
+            </article>
+            <span id="user-result-edit">
+                <article>
+                    <h2>Edit User Info<span id="search-term"></span></h2>
+                    <h1>User Type:<select>
+                        <option value="Driver">Driver</option>
+                        <option value="Sponsor">Sponsor</option>
+                    </select></h1>
+                    <h1>Username: <input id="edit-username" type="text"></h1>
+                    <h1>Email: <input id="edit-email" type="text"></h1>
+                    <h1>First Name: <input id="edit-fName" type="text"></h1>
+                    <h1>Last Name: <input id="edit-lName" type="text"></h1>
+                    <h1>Phone: <input id="edit-phone" type="text"></h1>
+                    <h1>Password: <input id="edit-password" type="text"></h1>
+                    <span>
+                        <button>Save</button>
+                        <button id="cancel" onclick="switchContent('user-result-edit','user-result','flex')">Cancel</button>
+                        <button class="btn-red" id="remove-user">Remove User</button>
+                    </span>
+                </article>
+                <article>
+                    <h2>Reward Points</h2>
+                    <h1>Point Total:<span id="result-points"></span></h1>
+                    <span>
+                        <button>Add</button>
+                        <input type="text" placeholder="Amount">
+                        
+                        <button class="btn-red">Remove</button>
+                    </span>
+                    <h1>Reason: <input type="text" placeholder="Reason for point change"></h1>
+                </article>
+            </span>
+            
+        </section>
+        <!--Side bar for quick information that the user might want-->
+        <aside>
+            <div></div>
+        </aside>
     </div>
-
 </body>
+
 <script>
+    loadDashboard();
 </script>
 </html>

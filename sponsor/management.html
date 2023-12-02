@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <script src="../js/account.js"></script>
+    <script src="../js/sponsorPages.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,14 +19,14 @@
     <div id="content">
         <!--Navgation Bar: links to other pages go here-->
         <nav>
-            <button id="nav-account" onclick="window.location.href='./admin_settings.html'">
+            <button id="nav-account" onclick="window.location.href='./sponsor_settings.html'">
                 <img src="../imgs/account-icon.png">
-                <p>Welcome, <span id="user-name">Admin</span></p>
+                <p>Welcome, <span id="user-name">Sponsor</span></p>
             </button>
-            <button id="nav-dashboard" onclick="window.location.href='./admin_dashboard.html'">Dashboard</button>
-            <button onclick="window.location.href='./admin_sponsors.html'">Sponsor Management</button>
-            <button onclick="window.location.href='./admin_management.html'">User Management</button>
-            <button onclick="window.location.href='./admin_logs.html'">Logs</button>
+            <button id="nav-dashboard" onclick="window.location.href='./sponsor_dashboard.html'">Dashboard</button>
+            <button onclick="window.location.href='./sponsor_organization.html'">Sponsor</button>
+            <button onclick="window.location.href='./sponsor_catalog.html'">Catalog</button>
+            <button onclick="window.location.href='./sponsor_management.html'">User Management</button>
             <button id="nav-logout" onclick="logout()">Logout</button>
             <button id="nav-about" onclick="window.location.href='../aboutPage.html'">About Us</button>
         </nav>
@@ -39,7 +40,6 @@
                                 <option value = "" disable selected> Select Member Type</option>
                                 <option value = "Driver">Driver</option>
                                 <option value = "Sponsor">Sponsor</option>
-                                <option value = "Admin">Admin</option>
                             </select>
                             <select id="search-type">
                                 <option value = "" disable selected> Search by</option>
@@ -71,7 +71,6 @@
                     <h1>User Type:<select>
                         <option value="Driver">Driver</option>
                         <option value="Sponsor">Sponsor</option>
-                        <option value="Admin">Admin</option>
                     </select></h1>
                     <h1>Username: <span id="result-username"></span></h1>
                     <h1>Email: <span id="result-email"></span></h1>

@@ -215,29 +215,99 @@ overlay.classList.remove('active')
 
 
 /* Add To Cart */
-
+var cart = [];
 
 function addToCart(btn, albumArt, album, artist, price) {
-  btn.innerHTML = "Added!"
+    btn.innerHTML = "Added!";
 
+    // Reset the button text
+    setTimeout(() => {
+        btn.innerHTML = "Add to Cart";
+    }, 2000); // Reset to "Add to Cart" after 2 seconds
 
-  var template = "";
- 
-  template += '<div class="col-sm-3 album_item" id="mini_album_item">';
-  template += '<div class="item_thmb"><img id="mini_album_art" src=' + albumArt + ' ></div>';
-  template += '<div id="song_info">';
-  template += '<div class="item_title"> <p style="font-weight: bold; display: inline-block;">Album: </p>' + album + '</div>';
-  template += '<div class="item_price"> <p style="font-weight: bold; display: inline-block;">Price: </p>' + price + ' points </div>';
-  template += '</div>';
-  template += '<button id="removeFromCart" onclick="removeFromCart(this,\'' + btn.id + '\')" style="display: inline-block; margin-top: 20px; float: right;">Remove</button>';
-  template += '</div>';
- 
-  document.getElementById("cart").innerHTML += template;
+    var existingItem = cart.find(item => item.album === album);
+
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({
+            button: btn,
+            art: albumArt,
+            album: album,
+            artist: artist,
+            price: price,
+            quantity: 1
+        });
+    }
+
+    updateCart();
 }
 
-function removeFromCart(button, btn) {
-  var item = button.parentNode;
-  item.parentNode.removeChild(item);
+function updateCart() {
+    var cartContainer = document.getElementById('cart');
+    cartContainer.innerHTML = '';
+
+    cart.forEach(item => {
+        var cartItemDiv = document.createElement('div');
+        cartItemDiv.classList.add('cart-item');
+
+        var albumInfoDiv = document.createElement('div');
+        albumInfoDiv.classList.add('album-info');
+
+        var imgElement = document.createElement('img');
+        imgElement.src = item.art;
+        imgElement.alt = item.name + ' Image';
+        albumInfoDiv.appendChild(imgElement);
+
+        var infoDiv = document.createElement('div');
+        infoDiv.classList.add('info-container');
+
+        var albumTitleSpan = document.createElement('span');
+        albumTitleSpan.classList.add('album-title');
+        albumTitleSpan.innerText = `Album: ${item.album} \n`;
+        infoDiv.appendChild(albumTitleSpan);
+
+        var artistSpan = document.createElement('span');
+        artistSpan.classList.add('artist');
+        artistSpan.innerText = `Artist: ${item.artist} \n`;
+        infoDiv.appendChild(artistSpan);
+
+        var priceSpan = document.createElement('span');
+        priceSpan.classList.add('item-price');
+        priceSpan.innerText = `Price: ${item.price} points\n`;
+        infoDiv.appendChild(priceSpan);
+
+        var quantitySpan = document.createElement('span');
+        quantitySpan.innerText = `Quantity: ${item.quantity}`;
+        infoDiv.appendChild(quantitySpan);
+
+        albumInfoDiv.appendChild(infoDiv);
+
+        var removeButton = document.createElement('button');
+        removeButton.innerText = 'Remove from Cart';
+        removeButton.onclick = function () {
+            removeItemFromCart(item);
+        };
+
+        cartItemDiv.appendChild(albumInfoDiv);
+        cartItemDiv.appendChild(removeButton);
+        cartContainer.appendChild(cartItemDiv);
+    });
+
+    var totalPoints = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    document.getElementById('totalPoints').innerText = totalPoints;
+}
+
+function removeItemFromCart(item) {
+    // Find the index of the item in the cart
+    var index = cart.findIndex(cartItem => cartItem === item);
+
+    if (index !== -1) {
+        // Remove the item from the cart array
+        cart.splice(index, 1);
+        // Update the cart display
+        updateCart();
+    }
 }
 
 // Function to sort items by name A to Z
@@ -340,3 +410,16 @@ sortItems();
 
 
 sortItems();
+
+
+async function purchase(){
+    var amount = document.getElementById('totalPoints').innerText
+    var reason = "purchase";
+    var user = getCookie("accountID");
+    if(amount && reason){
+        var queryParams = "?amount="+amount+"&reason="+reason+"&awardType="+"Remove"+"&token="+user;
+        const res = await fetch('https://u76zsrtgq8.execute-api.us-east-1.amazonaws.com/team02-testing/awardPoints'+queryParams);
+        const data = await res.json();
+        console.log(data);
+    }
+}
