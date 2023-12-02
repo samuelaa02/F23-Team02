@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <script src="../js/account.js"></script>
+    <script src="../js/sponsorPages.js"></script>
+    <script src="../js/userSearch.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,12 +22,11 @@
         <nav>
             <button id="nav-account" onclick="window.location.href='./admin_settings.html'">
                 <img src="../imgs/account-icon.png">
-                <p>Welcome, <span id="user-name">Admin</span></p>
+                <p>Welcome, <span id="user-name">Sponsor</span></p>
             </button>
             <button id="nav-dashboard" onclick="window.location.href='./admin_dashboard.html'">Dashboard</button>
-            <button onclick="window.location.href='./admin_sponsors.html'">Sponsor Management</button>
+            <button onclick="window.location.href='./admin_sponsors.html'">Sponsors</button>
             <button onclick="window.location.href='./admin_management.html'">User Management</button>
-            <button onclick="window.location.href='./admin_logs.html'">Logs</button>
             <button id="nav-logout" onclick="logout()">Logout</button>
             <button id="nav-about" onclick="window.location.href='../aboutPage.html'">About Us</button>
         </nav>
@@ -35,20 +36,20 @@
                 <h2>Manage Users</h2>
                 <h1>
                     <div class="horizontal">
-                            <select id="search-user-type">
+                            <select id="userType">
                                 <option value = "" disable selected> Select Member Type</option>
                                 <option value = "Driver">Driver</option>
                                 <option value = "Sponsor">Sponsor</option>
                                 <option value = "Admin">Admin</option>
                             </select>
-                            <select id="search-type">
+                            <select id="searchType">
                                 <option value = "" disable selected> Search by</option>
-                                <option value = "username">Username</option>
-                                <option value = "email">Email</option>
+                                <option value = "Username">Username</option>
+                                <option value = "Email">Email</option>
                             </select>
                         
-                        <input type="search" id="search-user-string">
-                        <button onclick="searchForUser()">Search</button>
+                        <input type="search" id="userName">
+                        <button onclick="getUser()">Search</button>
                     </div>
                 </h1>
             </article>
@@ -71,14 +72,13 @@
                     <h1>User Type:<select>
                         <option value="Driver">Driver</option>
                         <option value="Sponsor">Sponsor</option>
-                        <option value="Admin">Admin</option>
                     </select></h1>
-                    <h1>Username: <span id="result-username"></span></h1>
-                    <h1>Email: <span id="result-email"></span></h1>
-                    <h1>First Name: <span id="result-fName"></span></h1>
-                    <h1>Last Name: <span id="result-lName"></span></h1>
-                    <h1>Phone: <span id="result-phone"></span></h1>
-                    <h1>Password: <span id="result-password"></span></h1>
+                    <h1>Username: <input id="edit-username" type="text"></h1>
+                    <h1>Email: <input id="edit-email" type="text"></h1>
+                    <h1>First Name: <input id="edit-fName" type="text"></h1>
+                    <h1>Last Name: <input id="edit-lName" type="text"></h1>
+                    <h1>Phone: <input id="edit-phone" type="text"></h1>
+                    <h1>Password: <input id="edit-password" type="text"></h1>
                     <span>
                         <button>Save</button>
                         <button id="cancel" onclick="switchContent('user-result-edit','user-result','flex')">Cancel</button>
@@ -87,7 +87,7 @@
                 </article>
                 <article>
                     <h2>Reward Points</h2>
-                    <h1>Point Total:<span></span></h1>
+                    <h1>Point Total:<span id="result-points"></span></h1>
                     <span>
                         <button>Add</button>
                         <input type="text" placeholder="Amount">
