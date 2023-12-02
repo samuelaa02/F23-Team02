@@ -73,12 +73,12 @@
                         <option value="Driver">Driver</option>
                         <option value="Sponsor">Sponsor</option>
                     </select></h1>
-                    <h1>Username: <span id="result-username"></span></h1>
-                    <h1>Email: <span id="result-email"></span></h1>
-                    <h1>First Name: <span id="result-fName"></span></h1>
-                    <h1>Last Name: <span id="result-lName"></span></h1>
-                    <h1>Phone: <span id="result-phone"></span></h1>
-                    <h1>Password: <span id="result-password"></span></h1>
+                    <h1>Username: <input id="edit-username" type="text"></h1>
+                    <h1>Email: <input id="edit-email" type="text"></h1>
+                    <h1>First Name: <input id="edit-fName" type="text"></h1>
+                    <h1>Last Name: <input id="edit-lName" type="text"></h1>
+                    <h1>Phone: <input id="edit-phone" type="text"></h1>
+                    <h1>Password: <input id="edit-password" type="text"></h1>
                     <span>
                         <button>Save</button>
                         <button id="cancel" onclick="switchContent('user-result-edit','user-result','flex')">Cancel</button>
@@ -87,7 +87,7 @@
                 </article>
                 <article>
                     <h2>Reward Points</h2>
-                    <h1>Point Total:<span></span></h1>
+                    <h1>Point Total:<span id="result-points"></span></h1>
                     <span>
                         <button>Add</button>
                         <input type="text" placeholder="Amount">
