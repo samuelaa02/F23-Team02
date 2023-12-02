@@ -97,6 +97,27 @@
                     <h1>Reason: <input type="text" placeholder="Reason for point change"></h1>
                 </article>
             </span>
+            <!--NEW USER-->
+            <button class="btn-blue" id="new-user-btn" onclick="switchContent('new-user-btn','create-new-user','flex')">New User</button>;
+            <article id="create-new-user">
+                <h2>Create a new user:</h2>
+                <h1>User Type:
+                    <select id = "new-user-usertype">
+                        <option value="Driver">Driver</option>
+                        <option value="Sponsor">Sponsor</option>
+                    </select>
+                </h1>
+                <h1>Username: <input id="new-user-username" type="text"></h1>
+                <h1>Email: <input id="new-user-email" type="text"></h1>
+                <h1>First Name: <input id="new-user-fName" type="text"></h1>
+                <h1>Last Name: <input id="new-user-lName" type="text"></h1>
+                <h1>Phone: <input id="new-user-phone" type="text"></h1>
+                <h1>Password: <input id="new-user-password" type="text"></h1>
+                <span>
+                    <button onclick="createNewUser()">Create</button>
+                    <button id="cancel" onclick="switchContent('create-new-user','new-user-btn','flex')">Cancel</button>
+                </span>
+            </article>
             
         </section>
         <!--Side bar for quick information that the user might want-->
