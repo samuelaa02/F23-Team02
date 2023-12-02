@@ -294,3 +294,54 @@ async function switchSponsor(accountID, sponsorID){
     const data = await res.json();
     console.log(data);
 }
+
+async function createNewUser(){
+    try{
+        var username, type, email, fName, lName, phone, password, sponOrg;
+        username = document.getElementById("new-user-username").value;
+        type = document.getElementById("new-user-usertype").value;
+        email = document.getElementById("new-user-email").value;
+        fname = document.getElementById("new-user-fName").value;
+        lname = document.getElementById("new-user-lName").value;
+        phone = document.getElementById("new-user-phone").value;
+        password = document.getElementById("new-user-password").value;
+
+        if(checkFormat('word',fname) === false){
+            alert("First name must only contain alphabetic letters.");
+        }else if(checkFormat('word',lname) === false){
+            alert("Last name must only contain alphabetic letters.");
+        }else if(checkFormat('username',username)=== false){
+            alert("Invalid username\nMust only contains letters and numbers\nMust be between 6-20 characters in length");
+        }else if(checkFormat("password",password) === false){
+            alert("Password must be 8-16 characters, contain at least one letter, one number and one special character.");
+        }else if(checkFormat("email",email)=== false){
+            alert("Invalid email.");
+        }else if(!(fname && lname && username && email && phone && password)){
+            alert("Please fill out all fields.");
+        }else{
+            const resAvailable = await fetch("https://u76zsrtgq8.execute-api.us-east-1.amazonaws.com/team02-testing/register/inUse?username="+username+"&email="+email);
+            const dataAvailable = await resAvailable.json();
+            console.log(dataAvailable);
+            if(dataAvailable.usernameStatus === "Unavailable"){
+                alert("Username is unavailable.");
+            }else if (dataAvailable.emailStatus === "Unavailable"){
+                alert("Email is already being used by another account.");
+            }else{
+                var queryParams = "?Email="+email+"&FirstName="+fname+"&LastName="+lname+"&Password="+password+"&Phone="+phone+"&UserType="+type+"&Username="+username;
+                const res = await fetch('https://u76zsrtgq8.execute-api.us-east-1.amazonaws.com/team02-testing/manage-user/create-user'+queryParams);
+                const data = await res.json();
+                console.log(data);
+                if(data.status === "Success"){
+                    alert('Successfully create user ' + username+".");
+                    location.reload();
+                }else{
+                    alert("Error creating new User");
+                }
+            }
+        }
+
+    }
+    catch(err){
+        console.log(err);
+    }
+}

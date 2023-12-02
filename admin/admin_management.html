@@ -3,6 +3,7 @@
     <script src="../js/account.js"></script>
     <script src="../js/sponsorPages.js"></script>
     <script src="../js/userSearch.js"></script>
+    <script src="../js/adminPages.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,6 +37,7 @@
             <article>
                 <h2>Manage Users</h2>
                 <h1>
+                    <!--User Search-->
                     <div class="horizontal">
                             <select id="userType">
                                 <option value = "" disable selected> Select Member Type</option>
@@ -54,6 +56,7 @@
                     </div>
                 </h1>
             </article>
+            <!-- User Search Result-->
             <article id="user-result">
                 <h2>User Result for <span id="search-term"></span></h2>
                 <h1>User Type: <span id="result-usertype"></span></h1>
@@ -67,6 +70,7 @@
                     <button onclick="switchContent('user-result','user-result-edit','flex')">Edit</button>
                 </span>
             </article>
+            <!--Edit User Search Result-->
             <span id="user-result-edit">
                 <article>
                     <h2>Edit User Info<span id="search-term"></span></h2>
@@ -98,6 +102,28 @@
                     <h1>Reason: <input type="text" placeholder="Reason for point change"></h1>
                 </article>
             </span>
+            <!--NEW USER-->
+            <button class="btn-blue" id="new-user-btn" onclick="switchContent('new-user-btn','create-new-user','flex')">New User</button>;
+            <article id="create-new-user">
+                <h2>Create a new user:</h2>
+                <h1>User Type:
+                    <select id = "new-user-usertype">
+                        <option value="Driver">Driver</option>
+                        <option value="Sponsor">Sponsor</option>
+                        <option value="Admin">Admin</option>
+                    </select>
+                </h1>
+                <h1>Username: <input id="new-user-username" type="text"></h1>
+                <h1>Email: <input id="new-user-email" type="text"></h1>
+                <h1>First Name: <input id="new-user-fName" type="text"></h1>
+                <h1>Last Name: <input id="new-user-lName" type="text"></h1>
+                <h1>Phone: <input id="new-user-phone" type="text"></h1>
+                <h1>Password: <input id="new-user-password" type="text"></h1>
+                <span>
+                    <button onclick="createNewUser()">Create</button>
+                    <button id="cancel" onclick="switchContent('create-new-user','new-user-btn','flex')">Cancel</button>
+                </span>
+            </article>
             
         </section>
         <!--Side bar for quick information that the user might want-->
@@ -108,6 +134,5 @@
 </body>
 
 <script>
-    loadDashboard();
 </script>
 </html>

@@ -235,7 +235,7 @@ section article span #cancel:hover{
     flex-direction:column;
 }
 
-#user-result, #sponsor-result, #new-sponsor{
+#user-result, #sponsor-result, #new-sponsor, #create-new-user{
     display:none;
     flex-direction: column;
 }
