@@ -4,60 +4,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sponsor Account</title>
-    <link rel="stylesheet" href="../styles/account.css">
+    <title>Sponsor Catalog</title>
     <link rel="stylesheet" href="../styles/globalv2.css">
+    <link rel="stylesheet" href="../styles/account.css">
 </head>
 <body>
-    <nav class="vertical-nav">
-        <ul>
-            <li><a href="Sponsor_dashboard.html">Dashboard</a></li>
-            <li><a href="Sponsor_catalog.html">Catalog</a></li>
-            <li><a href="Sponsor_settings.html">Settings</a></li>
-        </ul>
-    </nav>
-    <header>
-        <h1>Welcome, Sponsor</h1>
-    </header>
-    <main>
-        <!-- Sponsor content goes here -->
+    <!--Loading Screen until fields are populated-->
+    <div id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!--Actual Page Content-->
+    <div id="content">
+        <nav>
+            <button id="nav-account" onclick="window.location.href='./sponsor_settings.html'">
+                <img src="../imgs/account-icon.png">
+                <p>Welcome, <span id="user-name">Sponsor</span></p>
+            </button>
+            <button id="nav-dashboard" onclick="window.location.href='./sponsor_dashboard.html'">Dashboard</button>
+            <button onclick="window.location.href='./sponsor_organization.html'">Sponsor</button>
+            <button onclick="window.location.href='./sponsor_catalog.html'">Catalog</button>
+            <button onclick="window.location.href='./sponsor_management.html'">User Management</button>
+            <button id="nav-logout" onclick="logout()">Logout</button>
+            <button id="nav-about" onclick="window.location.href='../aboutPage.html'">About Us</button>
+        </nav>
         <section>
-            <h2>Catalog</h2>
-            <p>Welcome to the Sponsor catalog page.</p>
-        </section> <br>
-        <section>
-            <form id="search">
-                <!--<input type="search" id="catalog-search" name="catalog-search" placeholder="Search...">
-                <button>Search</button>!-->
-            </form><button display="inline-block">Edit Catalog</button>
-        </section>
-        <br>
-        <section>
-            <h2>Products</h2>
-            <!--<catalog-item></catalog-item>!-->
-            <div class="container">
-                <div class="row" id="search_artist">
-                    <div class="wrapper">
-                        <form id="form">
-                            <input type="text" placeholder="Search" id="input_search">
-                        </form>
+            <div id="catalog">
+                <h2>Catalog</h2>
+                <button id="cartBtn" data-modal-target="#modal">Cart</button>
+            </div>
+
+            <br><br>
+            <div id="container">
+                <h2 style="margin-left: 20px;">Products</h2>
+                <div class="container">
+                    <div id="search_artist">
+                        <div>
+                            <form id="form">
+                                <input type="text" placeholder="Search" id="input_search">
+                            </form>
+                        </div>
+                    </div>
+                    <div id="not_match">
+                        Nothing found.
+                    </div>
+                    <div class="row" id="album_list_container">
                     </div>
                 </div>
-                <div id="not_match">
-                    Nothing found.
-                </div>
-                <div class="row" id="album_list_container">
-                </div>
             </div>
-        </section>
+    </section>
+        <aside>
+            <div></div>
+        </aside>
+    </div>
 
-    </main>
-    <footer>
-        <p>&copy; 2023 Your Company</p>
-        <p><a href="../aboutPage.html">About Us</p>
-    </footer>
+    <div class="modal" id="modal">
+        <div class="modal-header">
+          <div class="title">Sponsor Catalog</div>
+          <button id="closeBtn" data-close-button class="close-button">&times;</button>
+        </div>
+        <div id="cart" class="modal-body">
+          
+        </div>
+        <div id = "total">
+            <strong>Total:</strong>
+            <span id="totalPoints">0</span><span> points</span>
+        </div>
+        <div id = "purchase">
+            <button onclick="purchase()" id="purchaseButton">Purchase</button>
+        </div>
+    </div>
+    <div id="overlay"></div>
 
     <script src="../js/components.js"></script>
+    <script src="../js/redirect.js"></script>
+    <script src="../js/account.js"></script>
 
 </body>
 </html>
