@@ -2,7 +2,7 @@
 <html lang="en">
     <script src="../js/account.js"></script>
     <script src="../js/sponsorPages.js"></script>
-    <script src="..js/userSearch.js"></script>
+    <script src="../js/userSearch.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,19 +37,19 @@
                 <h2>Manage Users</h2>
                 <h1>
                     <div class="horizontal">
-                            <select id="search-user-type">
+                            <select id="userType">
                                 <option value = "" disable selected> Select Member Type</option>
                                 <option value = "Driver">Driver</option>
                                 <option value = "Sponsor">Sponsor</option>
                             </select>
-                            <select id="search-type">
+                            <select id="searchType">
                                 <option value = "" disable selected> Search by</option>
                                 <option value = "Username">Username</option>
                                 <option value = "Email">Email</option>
                             </select>
                         
                         <input type="search" id="userName">
-                        <button onclick="searchForUser()">Search</button>
+                        <button onclick="getUser()">Search</button>
                     </div>
                 </h1>
             </article>
