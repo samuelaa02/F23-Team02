@@ -422,4 +422,10 @@ async function purchase(){
         const data = await res.json();
         console.log(data);
     }
+
+    var modalContent = document.getElementById('cart');
+    var modal = document.getElementById('modal');
+    modal.innerHTML = '<p>Purchase successful!</p>';
+    modal.style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
 }
