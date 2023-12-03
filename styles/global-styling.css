@@ -11,7 +11,7 @@ body{
 }
 
 #loading {
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -32,7 +32,7 @@ body{
 }
 
 #content {
-    display: flex;
+    display: none;
     flex-direction: row;
     flex-wrap:nowrap;
     justify-content: center;
