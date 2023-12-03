@@ -60,13 +60,23 @@ async function searchForUser(){
 }
 
 async function awardPoints(type){
-    var amount = document.getElementById("amount").value;
-    var reason = document.getElementById("reason").value;
+    var amount = document.getElementById("award-amount").value;
+    var reason = document.getElementById("award-reason").value;
     var user = document.getElementById("result-username").innerHTML;
     if(amount && reason){
         var queryParams = "?amount="+amount+"&reason="+reason+"&awardType="+type+"&userID="+user;
         const res = await fetch('https://u76zsrtgq8.execute-api.us-east-1.amazonaws.com/team02-testing/awardPoints'+queryParams);
         const data = await res.json();
         console.log(data);
+        if(data.status === "Success"){
+            alert("Sucessfully transacted points to " + user + ".");
+            getUser();
+        }
+        else{
+            alert("Failed to complete transaction for user "+ user + ".");
+        }
+    }
+    else{
+        alert("Please Select Amount and/or Reason for awarding points.");
     }
 }

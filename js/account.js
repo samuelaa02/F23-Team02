@@ -5,6 +5,36 @@ function getCookie(cookieID){
     return cookie;
 }
 
+//loads user's name and ensures the user is signed in
+async function loadPage(){
+    try{
+        const accountID = getCookie('accountID');
+        const queryParams = "?UserID=" + accountID;
+        const res = await fetch('https://u76zsrtgq8.execute-api.us-east-1.amazonaws.com/team02-testing/manage-user/get-user-info'+queryParams);
+        const data = await res.json();
+        console.log(data);
+        if (data.status === "Success"){
+            document.getElementById('user-name').innerHTML = data.UserInfo.FirstName;
+            try{
+                document.getElementById('my-points').innerHTML = data.UserInfo.Points;
+            }
+            catch(err){
+                //its fine
+            }
+            switchContent('loading','content','flex');
+        }
+        else{
+            alert("Error Loading Page.");
+            location.reload();
+        }
+    }
+    catch(err){
+        console.log(err);
+        alert("Error Loading Page.");
+        location.reload();
+    }
+}
+
 
 function signIn(){
     
@@ -293,6 +323,13 @@ async function switchSponsor(accountID, sponsorID){
     const res = await fetch(apiURL);
     const data = await res.json();
     console.log(data);
+    if(data.status === "Success"){
+        alert("Successfully switched sponsors.");
+        location.reload();
+    }
+    else{
+        alert("Failed to change sponsor.");
+    }
 }
 
 async function createNewUser(){
@@ -343,5 +380,46 @@ async function createNewUser(){
     }
     catch(err){
         console.log(err);
+    }
+}
+
+async function updateUser(){
+    try{
+        var username = document.getElementById('result-username').innerHTML; 
+        var queryParams = "?Username="+username;
+        const res = await fetch('https://u76zsrtgq8.execute-api.us-east-1.amazonaws.com/team02-testing/manage-user/get-user-info'+queryParams)
+        const data = await res.json();
+
+        //get userid
+        if(data.status === "Success"){
+            //update user
+            var newType,newUsername,newEmail,newfName,newlName,newPhone,newPassword;
+            newType= document.getElementById('edit-user-type').value;
+            console.log(newType);
+            newUsername= document.getElementById('edit-username').value;
+            newEmail= document.getElementById('edit-email').value;
+            newfName= document.getElementById('edit-fName').value;
+            newlName= document.getElementById('edit-lName').value;
+            newPhone= document.getElementById('edit-phone').value;
+            newPassword= document.getElementById('edit-password').value;
+
+            var updateParams = "?UserID="+data.UserInfo.AccountInfoID+"&UserType="+newType+"&Username="+newUsername+"&Email="+newEmail+"&FirstName="+newfName+"&LastName="+newlName+"&Phone="+newPhone+"&Password="+newPassword;
+            var resUpdate = await fetch('https://u76zsrtgq8.execute-api.us-east-1.amazonaws.com/team02-testing/manage-user/update-user'+updateParams);
+            var dataUpdate = await resUpdate.json();
+            console.log(dataUpdate);
+            if(dataUpdate.status==="Success"){
+                getUser();
+                switchContent('user-result-edit','user-result','flex');
+            }
+
+        }
+        else{
+            console.log("Error updating user: Fetching UserID");
+        }
+
+    }
+    catch(err){
+        console.log(err);
+        alert("Error updating user.");
     }
 }

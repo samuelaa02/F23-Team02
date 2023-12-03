@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sponsor Dashboard</title>
+    <title>Admin User Management</title>
     <link rel="stylesheet" href="../styles/globalv2.css">
 </head>
 
@@ -74,9 +74,10 @@
             <span id="user-result-edit">
                 <article>
                     <h2>Edit User Info<span id="search-term"></span></h2>
-                    <h1>User Type:<select>
+                    <h1>User Type:<select id="edit-user-type">
                         <option value="Driver">Driver</option>
                         <option value="Sponsor">Sponsor</option>
+                        <option value="Admin">Admin</option>
                     </select></h1>
                     <h1>Username: <input id="edit-username" type="text"></h1>
                     <h1>Email: <input id="edit-email" type="text"></h1>
@@ -85,21 +86,20 @@
                     <h1>Phone: <input id="edit-phone" type="text"></h1>
                     <h1>Password: <input id="edit-password" type="text"></h1>
                     <span>
-                        <button>Save</button>
+                        <button onclick="updateUser()">Save</button>
                         <button id="cancel" onclick="switchContent('user-result-edit','user-result','flex')">Cancel</button>
-                        <button class="btn-red" id="remove-user">Remove User</button>
+                        <!--<button class="btn-red" id="remove-user">Remove User</button>-->
                     </span>
                 </article>
                 <article>
                     <h2>Reward Points</h2>
                     <h1>Point Total:<span id="result-points"></span></h1>
                     <span>
-                        <button>Add</button>
-                        <input type="text" placeholder="Amount">
-                        
-                        <button class="btn-red">Remove</button>
+                        <button onclick="awardPoints('Add')">Add</button>
+                        <input type="text" placeholder="Amount" id="award-amount">
+                        <button class="btn-red" onclick="awardPoints('Remove')">Remove</button>
                     </span>
-                    <h1>Reason: <input type="text" placeholder="Reason for point change"></h1>
+                    <h1>Reason: <input type="text" placeholder="Reason for point change" id="award-reason"></h1>
                 </article>
             </span>
             <!--NEW USER-->
@@ -134,5 +134,6 @@
 </body>
 
 <script>
+    loadPage();
 </script>
 </html>
