@@ -26,7 +26,6 @@
             <button id="nav-dashboard" onclick="window.location.href='./admin_dashboard.html'">Dashboard</button>
             <button onclick="window.location.href='./admin_sponsors.html'">Sponsor Management</button>
             <button onclick="window.location.href='./admin_management.html'">User Management</button>
-            <button onclick="window.location.href='./admin_logs.html'">Logs</button>
             <button id="nav-logout" onclick="logout()">Logout</button>
             <button id="nav-about" onclick="window.location.href='../aboutPage.html'">About Us</button>
         </nav>
@@ -48,9 +47,6 @@
                 <h1>Description: <span id="sponsor-desc">Description</span></h1>
                 <h1>Point Conversion Rate: <span id="sponsor-rate"></span></h1>
                 <h1>Good behavior Rules: <span id="sponsor-rules"></span></h1>
-                <div class="horizontal">
-                    <h1>Drivers: <span></span></h1>
-                    <h1>Sponsor Users: <span></span></h1></div>
                 
                 <span>
                     <button onclick="switchContent('sponsor-result','sponsor-result-edit','flex')">Edit</button>
@@ -70,7 +66,6 @@
                     <span>
                         <button id="save-sponsor" onclick="updateSponsor()">Save</button>
                         <button id="cancel" onclick="switchContent('sponsor-result-edit','sponsor-result','flex')">Cancel</button>
-                        <button class="btn-red" id="remove-sponsor">Delete Sponsor</button>
                     </span>
                 </article>
             </span>
